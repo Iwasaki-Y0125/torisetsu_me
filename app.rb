@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'pg'
 
+enable :sessions
+
 configure do
     db_url = ENV['DATABASE_URL']
 
@@ -26,27 +28,99 @@ get '/' do
 end
 
 get '/input' do
-    erb :input  # views/input.erb
+    @profile_type = session[:profile_type]|| ''
+    @name = session[:name]|| ''
+    @name_furigana = session[:name_furigana]|| ''
+    @likes = session[:likes]|| ''
+    @dislikes = session[:dislikes]|| ''
+    @hobbies = session[:hobbies]|| ''
+    @current_focus = session[:current_focus]|| ''
+    @social_style = session[:social_style]|| ''
+    @decision_style = session[:decision_style]|| ''
+    @action_style = session[:action_style]|| ''
+    @message = session[:message]|| ''
+
+    erb :input
 end
 
 post '/result' do
-# フォームから送られてきた値をparamsハッシュで受け取る
-    @name = params[:name]
-    @name_furigana = params[:name_furigana]
-    @likes = params[:likes]
-    @dislikes = params[:dislikes]
-    @hobbies = params[:hobbies]
-    @current_focus = params[:current_focus]
-    @social_style = params[:social_style]
-    @decision_style = params[:decision_style]
-    @action_style = params[:action_style]
-    @message = params[:message]
-    erb :result  # views/result.erb
+# パラメータを受け取る
+profile_type = params[:profile_type]
+name = params[:name]
+name_furigana = params[:name_furigana]
+likes = params[:likes]
+dislikes = params[:dislikes]
+hobbies = params[:hobbies]
+current_focus = params[:current_focus]
+social_style = params[:social_style]
+decision_style = params[:decision_style]
+action_style = params[:action_style]
+message = params[:message]
+
+# DBに保存
+conn = settings.conn
+conn.exec_params(
+    "INSERT INTO profiles (profile_type,name, name_furigana, likes, dislikes, hobbies, current_focus, social_style, decision_style, action_style, message)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)",
+    [
+    profile_type,
+    name,
+    name_furigana,
+    likes,
+    dislikes,
+    hobbies,
+    current_focus,
+    social_style,
+    decision_style,
+    action_style,
+    message
+    ]
+)
+
+# セッションに保存
+session[:profile_type] = profile_type
+session[:name] = name
+session[:name_furigana] = name_furigana
+session[:likes] = likes
+session[:dislikes] = dislikes
+session[:hobbies] = hobbies
+session[:current_focus] = current_focus
+session[:social_style] = social_style
+session[:decision_style] = decision_style
+session[:action_style] = action_style
+session[:message] = message
+
+
+# 結果画面用のインスタンス変数をセット
+@profile_type = profile_type
+@name = name
+@name_furigana = name_furigana
+@likes = likes
+@dislikes = dislikes
+@hobbies = hobbies
+@current_focus = current_focus
+@social_style = social_style
+@decision_style = decision_style
+@action_style = action_style
+@message = message
+
+redirect '/result'
 end
 
 get '/result' do
-    # GETでアクセスされた時の処理（必要なら）
-    @result = "直接GETアクセスされました"
+    # セッションの値をインスタンス変数に渡す
+    @profile_type = session[:profile_type]
+    @name = session[:name]
+    @name_furigana = session[:name_furigana]
+    @likes = session[:likes]
+    @dislikes = session[:dislikes]
+    @hobbies = session[:hobbies]
+    @current_focus = session[:current_focus]
+    @social_style = session[:social_style]
+    @decision_style = session[:decision_style]
+    @action_style = session[:action_style]
+    @message = session[:message]
+
     erb :result
 end
 
