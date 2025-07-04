@@ -23,14 +23,8 @@ end
 
 # クエリ例：このままだと起動時に実行されるので、実際はroute内かメソッドで使うほうが良い
 get '/' do
-  conn = settings.conn
-  res = conn.exec("SELECT * FROM profiles;")
-
-  if res.ntuples.zero?
-    "データがありません"
-  else
-    res.map { |row| row.to_s }.join("<br>")
-  end
+    @title = 'わたしのトリセツ.me'
+    erb :index
 end
 
 # bindの設定
