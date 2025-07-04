@@ -23,18 +23,34 @@ end
 get '/' do
     @title = 'わたしのトリセツ.me'
     erb :top   # views/top.erb
-  end
+end
 
-  get '/input' do
+get '/input' do
     erb :input  # views/input.erb
-  end
+end
 
-  post '/result' do
-    # フォームからの入力を処理して結果を表示
-    @result = params[:something]
+post '/result' do
+# フォームから送られてきた値をparamsハッシュで受け取る
+    @name = params[:name]
+    @name_furigana = params[:name_furigana]
+    @likes = params[:likes]
+    @dislikes = params[:dislikes]
+    @hobbies = params[:hobbies]
+    @current_focus = params[:current_focus]
+    @social_style = params[:social_style]
+    @decision_style = params[:decision_style]
+    @action_style = params[:action_style]
+    @message = params[:message]
     erb :result  # views/result.erb
-  end
+end
 
-  get '/profile' do
-    erb :profile  # views/profile.erb
-  end
+get '/result' do
+    # GETでアクセスされた時の処理（必要なら）
+    @result = "直接GETアクセスされました"
+    erb :result
+end
+
+# 受け取った値を使って結果画面を表示
+get '/profile_text' do
+    erb :profile_text  # views/profile_text.erb
+end
