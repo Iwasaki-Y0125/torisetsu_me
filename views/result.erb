@@ -13,18 +13,21 @@
 <p><%= @action_style %></p>
 <p>みんなにひとこと:<%= @message %></p>
 
-<button><a href="profile_text">自己紹介文をみる</a></button>
+<a href="profile_text">自己紹介文をみる</a>
 
 
 <p>ほかの自己紹介に書き換える？</p>
-<button><a href="">職場用</a></button>
-<button><a href="">サークル用</a></button>
-<button><a href="">SNS用</a></button>
+<button>職場用</button>
+<button>サークル用</button>
+<button>SNS用</button>
 
-<p>コピペできるボタン付きの生成されたURL</p>
-<button><a href="/share">*テストシェア画面へのボタン</a></button>
+<p>あなたの共有URL：</p>
+<input type="text" value="<%= session[:share_url] %>" id="shareUrl" readonly>
+<button onclick="copyToClipboard()">URLをコピー</button>
+
+<a href="/share">*テストシェア画面</a>
 
 <a id="postToX" class="x-post-button" href="#" target="_blank" rel="noopener noreferrer">
     結果をXにポストする </a>
 
-<button><a href="/input">作成画面に戻る</a></button>
+<a href="/input">作成画面に戻る</a>
