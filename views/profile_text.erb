@@ -1,13 +1,21 @@
 <p>自己紹介文</p>
-<form>
-<!-- 生成された自己紹介文 -->
-</form>
+<p>自由に編集して使ってね</p>
+
+<% intro_text = <<~TEXT
+はじめまして。私の名前は#{@name}です。
+好きなものは#{@likes}、苦手なものは#{@dislikes}です。
+趣味は#{@hobbies}で、最近注力していることは#{@current_focus}です。
+性格は#{@social_style}、#{@decision_style}、#{@action_style}です。
+#{@message}
+TEXT
+%>
+<textarea rows="8" cols="60"><%= intro_text %></textarea>
 
 <p>ほかの自己紹介に書き換える？</p>
-<button><a href="">職場用</a></button>
-<button><a href="">サークル用</a></button>
-<button><a href="">SNS用</a></button>
+<button>職場用</button>
+<button>サークル用</button>
+<button>SNS用</button>
 
 
-<button><a href="/result">トリセツ画面に戻る</a></button>
-<button><a href="/input">作成画面に戻る</a></button>
+<a href="/result">トリセツ画面に戻る</a>
+<a href="/input">作成画面に戻る</a>

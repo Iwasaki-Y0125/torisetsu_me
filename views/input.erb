@@ -1,7 +1,7 @@
 <form action="/result" method="post">
     <p>ほかのトリセツに選びなおす？</p>
     <input type="radio" id="work" name="profile_type" value="work"
-    <% if @profile_type == 'work' %>checked<% end %>required>
+    <% if @profile_type == 'work' %>checked<% end %>>
     <label for="work">職場用</label>
 
     <input type="radio" id="circle" name="profile_type" value="circle"
@@ -32,7 +32,7 @@
 
     <p>どれが一番近い？</p>
     <input type="radio" id="sociable" name="social_style" value="sociable"
-    <% if @social_style == 'sociable' %>checked<% end %> required>
+    <% if @social_style == 'sociable' %>checked<% end %>>
     <label for="sociable">周囲とコミュニケーションを取りながら動くのが好き</label><br>
 
     <input type="radio" id="both" name="social_style" value="both"
@@ -46,7 +46,7 @@
 
     <p>どれが一番近い？</p>
     <input type="radio" id="emotional" name="decision_style" value="emotional"
-    <% if @decision_style == 'emotional' %>checked<% end %> required>
+    <% if @decision_style == 'emotional' %>checked<% end %>>
     <label for="emotional">チームの意見や感情を大切にする</label><br>
 
     <input type="radio" id="balance" name="decision_style" value="balance"
@@ -60,7 +60,7 @@
 
     <p>どれが一番近い？</p>
     <input type="radio" id="freedom" name="action_style" value="freedom"
-    <% if @action_style == 'freedom' %>checked<% end %>required>
+    <% if @action_style == 'freedom' %>checked<% end %>>
     <label for="freedom">自由な発想でチームを明るくする</label><br>
 
     <input type="radio" id="flexibility" name="action_style" value="flexibility"
