@@ -17,17 +17,24 @@ configure do
         end
 
 set :conn, conn
-
 set :bind, '0.0.0.0'
 end
 
-# クエリ例：このままだと起動時に実行されるので、実際はroute内かメソッドで使うほうが良い
 get '/' do
     @title = 'わたしのトリセツ.me'
-    erb :index
-end
+    erb :top   # views/top.erb
+  end
 
-# bindの設定
-configure do
-  set :bind, '0.0.0.0'
-end
+  get '/input' do
+    erb :input  # views/input.erb
+  end
+
+  post '/result' do
+    # フォームからの入力を処理して結果を表示
+    @result = params[:something]
+    erb :result  # views/result.erb
+  end
+
+  get '/profile' do
+    erb :profile  # views/profile.erb
+  end

@@ -1,0 +1,62 @@
+<nav>
+    <p>ほかのトリセツに選びなおす？</p>
+    <button><a href="">職場用</a></button>
+    <button><a href="">サークル用</a></button>
+    <button><a href="">SNS用</a></button>
+</nav>
+
+<form action="/input" method="post">
+    <label for="name">名前:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="name_furigana">ふりがな:</label>
+    <input type="number" id="name_furigana" name="name_furigana" required>
+
+    <label for="likes">好きなもの・関心のあること:</label>
+    <textarea id="likes" name="likes"></textarea>
+
+    <label for="dislikes">苦手なこと・注意してほしいこと:</label>
+    <textarea id="dislikes" name="dislikes"></textarea>
+
+    <label for="hobbies">趣味・リフレッシュ方法:</label>
+    <textarea id="hobbies" name="hobbies"></textarea>
+
+    <label for="current_focus">最近注力していること:</label>
+    <textarea id="current_focus" name="current_focus"></textarea>
+
+    <p>どれが一番近い？</p>
+    <input type="radio" id="sociable" name="social_style" value="sociable">
+    <label for="sociable">周囲とコミュニケーションを取りながら動くのが好き</label><br>
+
+    <input type="radio" id="both" name="social_style" value="both">
+    <label for="both">一人の時間と人との交流、どちらも大切にしている</label><br>
+
+    <input type="radio" id="solitude" name="social_style" value="solitude">
+    <label for="solitude">静かな環境でじっくり考える時間を好む</label><br>
+
+
+    <p>どれが一番近い？</p>
+    <input type="radio" id="emotional" name="decision_style" value="emotional">
+    <label for="emotional">チームの意見や感情を大切にする</label><br>
+
+    <input type="radio" id="balance" name="decision_style" value="balance">
+    <label for="balance">論理と感情のバランスを重視する</label><br>
+
+    <input type="radio" id="theorists" name="decision_style" value="theorists">
+    <label for="theorists">データや理論をベースに考える</label><br>
+
+
+    <p>どれが一番近い？</p>
+    <input type="radio" id="systematic" name="action_style" value="systematic">
+    <label for="systematic">計画的に業務を進めるのが得意</label><br>
+
+    <input type="radio" id="flexibility" name="action_style" value="flexibility">
+    <label for="flexibility">状況に応じて柔軟に対応する</label><br>
+
+    <input type="radio" id="freedom" name="action_style" value="freedom">
+    <label for="freedom">自由な発想でチームを明るくする</label><br>
+
+    <label for="message">みんなにひとこと:</label>
+    <textarea id="message" name="message"></textarea>
+</form>
+    <button type="submit">トリセツをつくる</button>
