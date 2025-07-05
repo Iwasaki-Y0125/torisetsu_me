@@ -9,15 +9,26 @@
         <option value="いっしょに暮らすわたし">いっしょに暮らすわたし</option>
         <option value="other">その他（自由入力）</option>
     </select>
-<br><br>
 <%#Todo JSでその他を選択したときのみ表示%>
     <div>
-    <label label for="category_custom">自由入力：</label>
+    <label for="category_custom">自由入力：</label>
     <input type="text" name="category_custom" placeholder="例：サークルでのわたし など" />
     </div>
 
+<br><br>
+    <div>
+    <label for="name">名前：</label>
+    <input type="text" name="name" placeholder="田中　太郎" />
+    </div>
+
+    <div>
+    <label for="name_furigana">ふりがな・よみかた：</label>
+    <input type="text" name="name_furigana" placeholder="たなか　たろう" />
+    </div>
+<br><br>
+
 <% 5.times do |i| %>
-    <%= erb :_question_block, locals: { index: i + 1 } %>
+    <%= erb :"partials/_question_block", locals: { index: i + 1 } %>
 <% end %>
 
 <br><br>
