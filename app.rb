@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'pg'
+require 'securerandom'
 
 enable :sessions
 
@@ -8,13 +9,13 @@ configure do
 
     conn = if db_url && !db_url.empty?
         PG.connect(db_url)
-      else
+    else
         PG.connect(
-          dbname: 'torisetsu_db',
-          user: 'postgres',
-          password: 'password',
-          host: 'db',
-          port: 5432
+        dbname: 'torisetsu_db',
+        user: 'postgres',
+        password: 'password',
+        host: 'db',
+        port: 5432
         )
         end
 
@@ -27,7 +28,7 @@ get '/' do
     erb :top   # views/top.erb
 end
 
-get '/input' do
+get '/edit' do
     @profile_type = session[:profile_type]|| ''
     @name = session[:name]|| ''
     @name_furigana = session[:name_furigana]|| ''
@@ -40,10 +41,12 @@ get '/input' do
     @action_style = session[:action_style]|| ''
     @message = session[:message]|| ''
 
-    erb :input
+    erb :edit
 end
 
 post '/result' do
+# 共有用UUID生成
+uuid = SecureRandom.uuid
 # パラメータを受け取る
 profile_type = params[:profile_type]
 name = params[:name]
@@ -60,9 +63,10 @@ message = params[:message]
 # DBに保存
 conn = settings.conn
 conn.exec_params(
-    "INSERT INTO profiles (profile_type,name, name_furigana, likes, dislikes, hobbies, current_focus, social_style, decision_style, action_style, message)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)",
+    "INSERT INTO profiles (uuid, profile_type, name, name_furigana, likes, dislikes, hobbies, current_focus, social_style, decision_style, action_style, message)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)",
     [
+    uuid,
     profile_type,
     name,
     name_furigana,
@@ -77,7 +81,11 @@ conn.exec_params(
     ]
 )
 
+# 共有URLをセッションに保存
+session[:share_url] = "#{request.base_url}/share/#{uuid}"
+
 # セッションに保存
+session[:uuid] = uuid
 session[:profile_type] = profile_type
 session[:name] = name
 session[:name_furigana] = name_furigana
@@ -89,6 +97,7 @@ session[:social_style] = social_style
 session[:decision_style] = decision_style
 session[:action_style] = action_style
 session[:message] = message
+
 
 
 # 結果画面用のインスタンス変数をセット
@@ -103,6 +112,8 @@ session[:message] = message
 @decision_style = decision_style
 @action_style = action_style
 @message = message
+@share_url = session[:share_url]
+
 
 redirect '/result'
 end
@@ -120,11 +131,54 @@ get '/result' do
     @decision_style = session[:decision_style]
     @action_style = session[:action_style]
     @message = session[:message]
+    @share_url = session[:share_url]
 
     erb :result
 end
 
 # 受け取った値を使って結果画面を表示
 get '/profile_text' do
+    # セッションの値をインスタンス変数に渡す
+    @profile_type = session[:profile_type]
+    @name = session[:name]
+    @name_furigana = session[:name_furigana]
+    @likes = session[:likes]
+    @dislikes = session[:dislikes]
+    @hobbies = session[:hobbies]
+    @current_focus = session[:current_focus]
+    @social_style = session[:social_style]
+    @decision_style = session[:decision_style]
+    @action_style = session[:action_style]
+    @message = session[:message]
+
     erb :profile_text  # views/profile_text.erb
 end
+
+get '/share' do
+    @profile_type = session[:profile_type]
+    @name = session[:name]
+    @name_furigana = session[:name_furigana]
+    @likes = session[:likes]
+    @dislikes = session[:dislikes]
+    @hobbies = session[:hobbies]
+    @current_focus = session[:current_focus]
+    @social_style = session[:social_style]
+    @decision_style = session[:decision_style]
+    @action_style = session[:action_style]
+    @message = session[:message]
+    erb :share  # views/share.erb
+end
+
+get '/share/:uuid' do
+    uuid = params[:uuid]
+    # DBからuuidに対応するデータを取得
+    result = settings.conn.exec_params("SELECT * FROM profiles WHERE uuid = $1", [uuid])
+
+    if result.ntuples == 0
+        status 404
+        return "指定されたプロフィールは存在しません"
+    end
+
+    @profile = result[0]
+    erb :share  # 共有画面テンプレート
+    end
