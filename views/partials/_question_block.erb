@@ -1,58 +1,82 @@
 <p>トリセツ<%= index %></p>
+
 <fieldset>
+<% question_options = [
+{
+    label: "型番（自分の基本仕様）",
+    values: [
+    "型番：性格を一言で言うと？",
+    "型番：一番好きなことは？",
+    "型番：感情で動く型？理論で考える型？",
+    "型番：勢い大事型？計画優先型？",
+    "型番：話す派？聞く派？"
+    ]
+},
+{
+    label: "操作説明（うまく付き合う方法）",
+    values: [
+    "操作説明：やる気スイッチはどこ？",
+    "操作説明：機嫌が悪いときのサインは？",
+    "操作説明：褒められてうれしいところは？",
+    "操作説明：落ち込んだときどうしてほしい？",
+    "操作説明：放っておいてほしい時って？"
+    ]
+},
+{
+    label: "おすすめ機能（伝えたい自分の魅力）",
+    values: [
+    "おすすめ機能：こんなとき頼りになります",
+    "おすすめ機能：こんなふうに使うと性能を発揮します",
+    "おすすめ機能：つい誰かのためにやっちゃうこと",
+    "おすすめ機能：〇〇を任せると安心です",
+    "おすすめ機能：〇〇な空気をつくるのが得意です"
+    ]
+},
+{
+    label: "取扱上の注意（地雷や苦手なこと）",
+    values: [
+    "取扱注意：されると傷つくこと",
+    "取扱注意：こう見えて実は〇〇に弱い/苦手です",
+    "取扱注意：〇〇には対応しておりません",
+    "取扱注意：〇〇されるとフリーズします",
+    "取扱注意：〇〇中はそっとしておいてください"
+    ]
+},
+{
+    label: "メンテナンス（心のケア・リセット方法）",
+    values: [
+    "メンテナンス：この言葉を言われると再起動します",
+    "メンテナンス：疲れたときの充電方法",
+    "メンテナンス：落ち込んだときに聞きたい曲は？",
+    "メンテナンス：落ち込んだときに食べたいものは？",
+    "メンテナンス：気分を切り替えるときにしたいことは？"
+    ]
+}
+] %>
+
 <label for="question_<%= index %>">質問を選択：</label>
     <select id="question_<%= index %>" name="questions[]">
-        <option value="">-- 選択してください --</option>
-        <option value="other">その他（自由入力）</option>
-        <optgroup label="型番（自分の基本仕様）">
-        <option value="型番：性格を一言で言うと？">型番：性格を一言で言うと？</option>
-        <option value="型番：一番好きなことは？">型番：一番好きなことは？</option>
-        <option value="型番：感情で動く型？理論で考える型？">型番：感情で動く型？理論で考える型？</option>
-        <option value="型番：勢い大事型？計画優先型？">型番：勢い大事型？計画優先型？</option>
-        <option value="型番：話す派？聞く派？">型番：話す派？聞く派？</option>
-        </optgroup>
+        <option value="" <%= @questions[index - 1] == "" ? "selected" : "" %>>-- 選択してください --</option>
+        <option value="other" <%= @questions[index - 1] == "other" ? "selected" : "" %>>その他（自由入力）</option>
 
-        <optgroup label="操作説明（うまく付き合う方法）">
-        <option value="操作説明：やる気スイッチはどこ？">操作説明：やる気スイッチはどこ？</option>
-        <option value="操作説明：機嫌が悪いときのサインは？">操作説明：機嫌が悪いときのサインは？</option>
-        <option value="操作説明：褒められてうれしいところは？">操作説明：褒められてうれしいところは？</option>
-        <option value="操作説明：落ち込んだときどうしてほしい？">操作説明：落ち込んだときどうしてほしい？</option>
-        <option value="操作説明：放っておいてほしい時って？">操作説明：放っておいてほしい時って？</option>
-        </optgroup>
-
-        <optgroup label="おすすめ機能（伝えたい自分の魅力）">
-        <option value="おすすめ機能：こんなとき頼りになります">おすすめ機能：こんなとき頼りになります</option>
-        <option value="おすすめ機能：こんなふうに使うと性能を発揮します">おすすめ機能：こんなふうに使うと性能を発揮します</option>
-        <option value="おすすめ機能：つい誰かのためにやっちゃうこと">おすすめ機能：つい誰かのためにやっちゃうこと</option>
-        <option value="おすすめ機能：〇〇を任せると安心です">おすすめ機能：〇〇を任せると安心です</option>
-        <option value="おすすめ機能：〇〇な空気をつくるのが得意です">おすすめ機能：〇〇な空気をつくるのが得意です</option>
-        </optgroup>
-
-        <optgroup label="取扱上の注意（地雷や苦手なこと）">
-        <option value="取扱注意：されると傷つくこと">取扱注意：されると傷つくこと</option>
-        <option value="取扱注意：こう見えて実は〇〇に弱い/苦手です">取扱注意：こう見えて実は〇〇に弱い/苦手です</option>
-        <option value="取扱注意：〇〇には対応しておりません">取扱注意：〇〇には対応しておりません</option>
-        <option value="取扱注意：〇〇されるとフリーズします">取扱注意：〇〇されるとフリーズします</option>
-        <option value="取扱注意：〇〇中はそっとしておいてください">取扱注意：〇〇中はそっとしておいてください</option>
-        </optgroup>
-
-        <optgroup label="メンテナンス（心のケア・リセット方法）">
-        <option value="メンテナンス：この言葉を言われると再起動します">メンテナンス：この言葉を言われると再起動します</option>
-        <option value="メンテナンス：疲れたときの充電方法">メンテナンス：疲れたときの充電方法</option>
-        <option value="メンテナンス：落ち込んだときに聞きたい曲は？">メンテナンス：落ち込んだときに聞きたい曲は？</option>
-        <option value="メンテナンス：落ち込んだときに食べたいものは？">メンテナンス：落ち込んだときに食べたいものは？</option>
-        <option value="メンテナンス：気分を切り替えるときにしたいことは？">メンテナンス：気分を切り替えるときにしたいことは？</option>
-        </optgroup>
+        <% question_options.each do |group| %>
+            <optgroup label="<%= group[:label] %>">
+            <% group[:values].each do |q| %>
+            <option value="<%= q %>" <%= @questions[index - 1] == q ? "selected" : "" %>><%= q %></option>
+            <% end %>
+            </optgroup>
+        <% end %>
     </select>
+
     <br><br>
     <%#Todo JSでその他を選択したときのみ表示%>
     <div>
     <label for="question_custom_<%= index %>">その他（自由入力）：</label>
-    <textarea type="text" name="question_customs[]" id="question_custom_<%= index %>" placeholder="操作説明：やる気スイッチはどこ？" ></textarea>
+        <textarea name="question_customs[]" id="question_custom_<%= index %>" placeholder="操作説明：やる気スイッチはどこ？" ><%= @question_customs[index - 1] || "" %></textarea>
     </div>
 
     <br><br>
     <label for="answer_<%= index %>">回答:</label>
-    <textarea id="answer_<%= index %>" name="answers[]" placeholder="こたえを書いてね"></textarea>
+    <textarea id="answer_<%= index %>" name="answers[]" placeholder="こたえを書いてね"><%= @answers[index - 1] || "" %></textarea>
     <br><br>
 </fieldset>

@@ -13,4 +13,14 @@
 <p><%= @action_style %></p>
 <p>みんなにひとこと:<%= @message %></p>
 
+
+<p>カテゴリ：<%= @profile["category"] %></p>
+<p>名前：<%= @profile["name"] %></p>
+
+<ul>
+  <% @profile["questions"].each_with_index do |q, i| %>
+    <li><%= q %> : <%= @profile["answers"][i] %></li>
+  <% end %>
+</ul>
+
 <button><a href="/">自分も作ってみる！</a></button>

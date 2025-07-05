@@ -29,16 +29,13 @@ get '/' do
 end
 
 get '/edit' do
-    @profile_type = session[:profile_type]|| ''
+    @category = session[:category]|| ''
+    @category_custom = session[:category_custom]|| ''
     @name = session[:name]|| ''
     @name_furigana = session[:name_furigana]|| ''
-    @likes = session[:likes]|| ''
-    @dislikes = session[:dislikes]|| ''
-    @hobbies = session[:hobbies]|| ''
-    @current_focus = session[:current_focus]|| ''
-    @social_style = session[:social_style]|| ''
-    @decision_style = session[:decision_style]|| ''
-    @action_style = session[:action_style]|| ''
+    @questions = session[:questions]|| []
+    @question_customs = session[:question_customs]|| []
+    @answers = session[:answers]|| []
     @message = session[:message]|| ''
 
     erb :edit
@@ -48,137 +45,90 @@ post '/result' do
 # 共有用UUID生成
 uuid = SecureRandom.uuid
 # パラメータを受け取る
-profile_type = params[:profile_type]
+category = params[:category]
+category_custom = params[:category_custom]
 name = params[:name]
 name_furigana = params[:name_furigana]
-likes = params[:likes]
-dislikes = params[:dislikes]
-hobbies = params[:hobbies]
-current_focus = params[:current_focus]
-social_style = params[:social_style]
-decision_style = params[:decision_style]
-action_style = params[:action_style]
+questions = params[:questions]
+question_customs = params[:question_customs]
+answers = params[:answers]
 message = params[:message]
+
+# セッションに保存
+session[:share_url] = "#{request.base_url}/share/#{uuid}"
+session[:uuid] = uuid
+session[:category] = category
+session[:category_custom] = category_custom
+session[:name] = name
+session[:name_furigana] = name_furigana
+session[:questions] = questions
+session[:question_customs] = question_customs
+session[:answers] = answers
+session[:message] = message
 
 # DBに保存
 conn = settings.conn
 conn.exec_params(
-    "INSERT INTO profiles (uuid, profile_type, name, name_furigana, likes, dislikes, hobbies, current_focus, social_style, decision_style, action_style, message)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)",
+    "INSERT INTO profiles (uuid, category, category_custom, name, name_furigana, questions, question_customs, answers, message)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
     [
     uuid,
-    profile_type,
+    category,
+    category_custom,
     name,
     name_furigana,
-    likes,
-    dislikes,
-    hobbies,
-    current_focus,
-    social_style,
-    decision_style,
-    action_style,
+    questions,
+    question_customs,
+    answers,
     message
     ]
 )
-
-# 共有URLをセッションに保存
-session[:share_url] = "#{request.base_url}/share/#{uuid}"
-
-# セッションに保存
-session[:uuid] = uuid
-session[:profile_type] = profile_type
-session[:name] = name
-session[:name_furigana] = name_furigana
-session[:likes] = likes
-session[:dislikes] = dislikes
-session[:hobbies] = hobbies
-session[:current_focus] = current_focus
-session[:social_style] = social_style
-session[:decision_style] = decision_style
-session[:action_style] = action_style
-session[:message] = message
-
-
-
-# 結果画面用のインスタンス変数をセット
-@profile_type = profile_type
-@name = name
-@name_furigana = name_furigana
-@likes = likes
-@dislikes = dislikes
-@hobbies = hobbies
-@current_focus = current_focus
-@social_style = social_style
-@decision_style = decision_style
-@action_style = action_style
-@message = message
-@share_url = session[:share_url]
-
 
 redirect '/result'
 end
 
 get '/result' do
-    # セッションの値をインスタンス変数に渡す
-    @profile_type = session[:profile_type]
-    @name = session[:name]
-    @name_furigana = session[:name_furigana]
-    @likes = session[:likes]
-    @dislikes = session[:dislikes]
-    @hobbies = session[:hobbies]
-    @current_focus = session[:current_focus]
-    @social_style = session[:social_style]
-    @decision_style = session[:decision_style]
-    @action_style = session[:action_style]
-    @message = session[:message]
-    @share_url = session[:share_url]
+# セッションの値をインスタンス変数に渡す
+@category = session[:category]
+@category_custom = session[:category_custom]
+@name = session[:name]
+@name_furigana = session[:name_furigana]
+@questions = session[:questions]
+@question_customs = session[:question_customs]
+@answers = session[:answers]
+@message = session[:message]
+@share_url = session[:share_url]
 
-    erb :result
+erb :result
 end
 
-# 受け取った値を使って結果画面を表示
-get '/profile_text' do
-    # セッションの値をインスタンス変数に渡す
-    @profile_type = session[:profile_type]
-    @name = session[:name]
-    @name_furigana = session[:name_furigana]
-    @likes = session[:likes]
-    @dislikes = session[:dislikes]
-    @hobbies = session[:hobbies]
-    @current_focus = session[:current_focus]
-    @social_style = session[:social_style]
-    @decision_style = session[:decision_style]
-    @action_style = session[:action_style]
-    @message = session[:message]
-
-    erb :profile_text  # views/profile_text.erb
-end
-
+#テスト用シェアページ
 get '/share' do
-    @profile_type = session[:profile_type]
-    @name = session[:name]
-    @name_furigana = session[:name_furigana]
-    @likes = session[:likes]
-    @dislikes = session[:dislikes]
-    @hobbies = session[:hobbies]
-    @current_focus = session[:current_focus]
-    @social_style = session[:social_style]
-    @decision_style = session[:decision_style]
-    @action_style = session[:action_style]
-    @message = session[:message]
-    erb :share  # views/share.erb
+@category = session[:category]
+@category_custom = session[:category_custom]
+@name = session[:name]
+@name_furigana = session[:name_furigana]
+@questions = session[:questions]
+@question_customs = session[:question_customs]
+@answers = session[:answers]
+@message = session[:message]
+@share_url = session[:share_url]
+
+erb :share  # views/share.erb
 end
 
+#UUID本番用シェアページ
 get '/share/:uuid' do
-    uuid = params[:uuid]
-    # DBからuuidに対応するデータを取得
-    result = settings.conn.exec_params("SELECT * FROM profiles WHERE uuid = $1", [uuid])
+uuid = params[:uuid]
+# DBからuuidに対応するデータを取得
+result = settings.conn.exec_params("SELECT * FROM profiles WHERE uuid = $1", [uuid])
 
-    if result.ntuples == 0
-        status 404
-        return "指定されたプロフィールは存在しません"
-    end
+if result.ntuples == 0
+    status 404
+    return "指定されたプロフィールは存在しません"
+end
 
-    @profile = result[0]
-    erb :share  # 共有画面テンプレート
-    end
+@profile = result[0]
+
+erb :share  # 共有画面テンプレート
+end
