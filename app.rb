@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'pg'
 require 'securerandom'
+require 'json'
 
 enable :sessions
 
@@ -66,6 +67,11 @@ session[:question_customs] = question_customs
 session[:answers] = answers
 session[:message] = message
 
+require 'json'
+questions = questions.to_json
+question_customs = question_customs.to_json
+answers = answers.to_json
+
 # DBに保存
 conn = settings.conn
 conn.exec_params(
@@ -128,7 +134,19 @@ if result.ntuples == 0
     return "指定されたプロフィールは存在しません"
 end
 
-@profile = result[0]
+raw = result[0]
+
+@profile = {
+"uuid" => raw["uuid"],
+"name" => raw["name"],
+"name_furigana" => raw["name_furigana"],
+"category" => raw["category"],
+"category_custom" => raw["category_custom"],
+"questions" => JSON.parse(raw["questions"]),
+"question_customs" => JSON.parse(raw["question_customs"]),
+"answers" => JSON.parse(raw["answers"]),
+"message" => raw["message"]
+}
 
 erb :share  # 共有画面テンプレート
 end

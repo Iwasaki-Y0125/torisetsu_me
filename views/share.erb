@@ -1,26 +1,17 @@
-<p><%= @name %>のトリセツ</p>
+<p><%= @profile["category"] %>のトリセツ</p>
 
-<p>名前：<%= @name %></p>
-<p>ふりがな：<%= @name_furigana %></p>
+<p>なまえ：<%= @profile["name"] %></p>
+<p>ふりがな/よみかた：<%= @profile["@name_furigana"] %>
 
-<p>好きなもの・関心のあること:<%= @likes %></p>
-<p>苦手なこと・注意してほしいこと:<%= @dislikes %></p>
-<p>趣味・リフレッシュ方法:<%= @hobbies %></p>
-<p>最近注力していること:<%= @current_focus %></p>
-<p>わたしはこういう人</p>
-<p><%= @social_style %></p>
-<p><%= @decision_style %></p>
-<p><%= @action_style %></p>
-<p>みんなにひとこと:<%= @message %></p>
+<p><%= @profile["@message"] %></p>
 
-
-<p>カテゴリ：<%= @profile["category"] %></p>
-<p>名前：<%= @profile["name"] %></p>
+<img id="image" src="image/demo.PNG" alt="わたし" />
 
 <ul>
-  <% @profile["questions"].each_with_index do |q, i| %>
+<% @profile["questions"].each_with_index do |q, i| %>
     <li><%= q %> : <%= @profile["answers"][i] %></li>
-  <% end %>
+<% end %>
 </ul>
+
 
 <button><a href="/">自分も作ってみる！</a></button>

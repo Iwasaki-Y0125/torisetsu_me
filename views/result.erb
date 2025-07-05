@@ -1,24 +1,18 @@
 <p><%= @name %>のトリセツ</p>
 
-<p>名前：<%= @name %></p>
-<p>ふりがな：<%= @name_furigana %></p>
+<p>なまえ：<%= @name %></p>
+<p>ふりがな/よみかた：<%= @name_furigana %></p>
 
-<p>好きなもの・関心のあること:<%= @likes %></p>
-<p>苦手なこと・注意してほしいこと:<%= @dislikes %></p>
-<p>趣味・リフレッシュ方法:<%= @hobbies %></p>
-<p>最近注力していること:<%= @current_focus %></p>
-<p>わたしはこういう人</p>
-<p><%= @social_style %></p>
-<p><%= @decision_style %></p>
-<p><%= @action_style %></p>
-<p>みんなにひとこと:<%= @message %></p>
+<p><%= @message %></p>
 
+<img id="image" src="image/demo.PNG" alt="わたし" />
 
+<ul>
+<% @questions.each_with_index do |q, i| %>
+    <li><%= q %> : <%= @answers[i] %></li>
+<% end %>
+</ul>
 
-<p>ほかの自己紹介に書き換える？</p>
-<button>職場用</button>
-<button>サークル用</button>
-<button>SNS用</button>
 
 <p>あなたの共有URL：</p>
 <input type="text" value="<%= session[:share_url] %>" id="shareUrl" readonly>
@@ -30,3 +24,4 @@
     結果をXにポストする </a>
 
 <a href="/edit">作成画面に戻る</a>
+<a href="/edit">別のトリセツを作る</a>

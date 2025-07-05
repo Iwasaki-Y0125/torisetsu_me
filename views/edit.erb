@@ -2,28 +2,28 @@
     <p>どんなトリセツをつくる？</p>
     <label for="category_select">カテゴリを選択：</label>
     <select id="category" name="category">
-        <option value="">-- 選択してください --</option>
-        <option value="働くときのわたし">はたらくときのわたし</option>
-        <option value="友だちとのわたし">友だちとのわたし</option>
-        <option value="ネットの中のわたし">ネットの中のわたし</option>
-        <option value="いっしょに暮らすわたし">いっしょに暮らすわたし</option>
-        <option value="other">その他（自由入力）</option>
+        <option value="" <%= @category == "" ? "selected" : "" %>>-- 選択してください --</option>
+        <option value="働くときのわたし" <%= @category == "働くときのわたし" ? "selected" : "" %>>はたらくときのわたし</option>
+        <option value="友だちとのわたし" <%= @category == "友だちとのわたし" ? "selected" : "" %>>友だちとのわたし</option>
+        <option value="ネットの中のわたし" <%= @category == "ネットの中のわたし" ? "selected" : "" %>>ネットの中のわたし</option>
+        <option value="いっしょに暮らすわたし" <%= @category == "いっしょに暮らすわたし" ? "selected" : "" %>>いっしょに暮らすわたし</option>
+        <option value="other" <%= @category == "other" ? "selected" : "" %>>その他（自由入力）</option>
     </select>
 <%#Todo JSでその他を選択したときのみ表示%>
     <div>
     <label for="category_custom">自由入力：</label>
-    <input type="text" name="category_custom" placeholder="例：サークルでのわたし など" />
+    <input type="text" name="category_custom" placeholder="例：サークルでのわたし" value=<%= @category_custom %> />
     </div>
 
 <br><br>
     <div>
-    <label for="name">名前：</label>
-    <input type="text" name="name" placeholder="田中　太郎" />
+        <label for="name">名前：</label>
+        <input type="text" name="name" id="name" placeholder="田中 太郎" value="<%= @name %>" />
     </div>
 
     <div>
     <label for="name_furigana">ふりがな・よみかた：</label>
-    <input type="text" name="name_furigana" placeholder="たなか　たろう" />
+    <input type="text" name="name_furigana" placeholder="たなか　たろう" value="<%= @name_furigana %>" />
     </div>
 <br><br>
 

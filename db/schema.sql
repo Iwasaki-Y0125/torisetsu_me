@@ -7,13 +7,13 @@ CREATE TABLE profiles (
     name_furigana TEXT,
     category TEXT,
     category_custom TEXT,
-    questions TEXT[],
-    question_customs TEXT[],
-    answers TEXT[],
+    questions JSONB,
+    question_customs JSONB,
+    answers JSONB,
     message TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     CHECK (
-    array_length(questions, 1) = array_length(answers, 1)
+        jsonb_array_length(questions) = jsonb_array_length(answers)
     )
 );
