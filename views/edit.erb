@@ -1,78 +1,30 @@
 <form action="/result" method="post">
-    <p>誰に向けてのトリセツをつくる？</p>
-    <input type="radio" id="work" name="profile_type" value="work"
-    <% if @profile_type == 'work' %>checked<% end %>>
-    <label for="work">職場用</label>
+    <p>どんなトリセツをつくる？</p>
+    <label for="category_select">カテゴリを選択：</label>
+    <select id="category" name="category">
+        <option value="">-- 選択してください --</option>
+        <option value="はたらくときのわたし">はたらくときのわたし</option>
+        <option value="友だちとのわたし">友だちとのわたし</option>
+        <option value="ネットの中のわたし">ネットの中のわたし</option>
+        <option value="いっしょに暮らすわたし">いっしょに暮らすわたし</option>
+        <option value="other">その他（自由入力）</option>
+    </select>
+<br><br>
+<%#Todo JSでその他を選択したときのみ表示%>
+    <div>
+    <label label for="category_custom">自由入力：</label>
+    <input type="text" name="category_custom" placeholder="例：サークルでのわたし など" />
+    </div>
 
-    <input type="radio" id="circle" name="profile_type" value="circle"
-    <% if @profile_type == 'circle' %>checked<% end %>>
-    <label for="circle">サークル用</label>
+<% 5.times do |i| %>
+    <%= erb :_question_block, locals: { index: i + 1 } %>
+<% end %>
 
-    <input type="radio" id="sns" name="profile_type" value="sns"
-    <% if @profile_type == 'sns' %>checked<% end %>>
-    <label for="sns">SNS用</label>
-
-    <label for="name">名前:</label>
-    <input type="text" id="name" name="name" required value="<%= @name %>">
-
-    <label for="name_furigana">ふりがな:</label>
-    <input type="text" id="name_furigana" name="name_furigana" value="<%= @name_furigana %>" >
-
-    <label for="likes">好きなもの・関心のあること:</label>
-    <textarea id="likes" name="likes"><%= @likes %></textarea>
-
-    <label for="dislikes">苦手なこと・注意してほしいこと:</label>
-    <textarea id="dislikes" name="dislikes"><%= @dislikes %></textarea>
-
-    <label for="hobbies">趣味・リフレッシュ方法:</label>
-    <textarea id="hobbies" name="hobbies"><%= @hobbies %></textarea>
-
-    <label for="current_focus">最近注力していること:</label>
-    <textarea id="current_focus" name="current_focus"><%= @current_focus %></textarea>
-
-    <p>どれが一番近い？</p>
-    <input type="radio" id="sociable" name="social_style" value="sociable"
-    <% if @social_style == 'sociable' %>checked<% end %>>
-    <label for="sociable">周囲とコミュニケーションを取りながら動くのが好き</label><br>
-
-    <input type="radio" id="both" name="social_style" value="both"
-    <% if @social_style == 'both' %>checked<% end %>>
-    <label for="both">一人の時間と人との交流、どちらも大切にしている</label><br>
-
-    <input type="radio" id="solitude" name="social_style" value="solitude"
-    <% if @social_style == 'solitude' %>checked<% end %>>
-    <label for="solitude">静かな環境でじっくり考える時間を好む</label><br>
-
-
-    <p>どれが一番近い？</p>
-    <input type="radio" id="emotional" name="decision_style" value="emotional"
-    <% if @decision_style == 'emotional' %>checked<% end %>>
-    <label for="emotional">チームの意見や感情を大切にする</label><br>
-
-    <input type="radio" id="balance" name="decision_style" value="balance"
-    <% if @decision_style == 'balance' %>checked<% end %>>
-    <label for="balance">論理と感情のバランスを重視する</label><br>
-
-    <input type="radio" id="theorists" name="decision_style" value="theorists"
-    <% if @decision_style == 'theorists' %>checked<% end %>>
-    <label for="theorists">データや理論をベースに考える</label><br>
-
-
-    <p>どれが一番近い？</p>
-    <input type="radio" id="freedom" name="action_style" value="freedom"
-    <% if @action_style == 'freedom' %>checked<% end %>>
-    <label for="freedom">自由な発想でチームを明るくする</label><br>
-
-    <input type="radio" id="flexibility" name="action_style" value="flexibility"
-    <% if @action_style == 'flexibility' %>checked<% end %>>
-    <label for="flexibility">状況に応じて柔軟に対応する</label><br>
-
-    <input type="radio" id="systematic" name="action_style" value="systematic"
-    <% if @action_style == 'systematic' %>checked<% end %>>
-    <label for="systematic">計画的に業務を進めるのが得意</label><br>
-
+<br><br>
     <label for="message">みんなにひとこと:</label>
     <textarea id="message" name="message"><%= @message %></textarea>
+<br><br>
 
     <button type="submit">トリセツをつくる</button>
+
 </form>
