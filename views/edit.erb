@@ -12,7 +12,7 @@
 <%#Todo JSでその他を選択したときのみ表示%>
     <div>
     <label for="category_custom">自由入力：</label>
-    <input type="text" name="category_custom" placeholder="例：サークルでのわたし" value=<%= @category_custom %> />
+    <input type="text" name="category_custom" placeholder="例：サークルでのわたし" value="<%= @category_custom %>">
     </div>
 
 <br><br>
@@ -27,9 +27,21 @@
     </div>
 <br><br>
 
-<% 5.times do |i| %>
+    <p>どのわたしを選ぶ？</p>
+    <div id="avatar-list">
+        <% 6.times do |i| %>
+        <% avatar_name = "avatar#{i}.png" %>
+        <label>
+        <input type="radio" name="avatar" value="<%= avatar_name %>" <%= @avatar == avatar_name ? 'checked' : '' %>>
+        <img src="/avatars/<%= avatar_name %>" alt="アバター<%= i %>">
+        </label>
+    <% end %>
+    </div>
+
+<br><br>
+    <% 5.times do |i| %>
     <%= erb :"partials/_question_block", locals: { index: i + 1 } %>
-<% end %>
+    <% end %>
 
 <br><br>
     <label for="message">みんなにひとこと:</label>

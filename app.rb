@@ -34,6 +34,7 @@ get '/edit' do
     @category_custom = session[:category_custom]|| ''
     @name = session[:name]|| ''
     @name_furigana = session[:name_furigana]|| ''
+    @avatar = session[:avatar]|| ''
     @questions = session[:questions]|| []
     @question_customs = session[:question_customs]|| []
     @answers = session[:answers]|| []
@@ -43,19 +44,19 @@ get '/edit' do
 end
 
 post '/result' do
-# 共有用UUID生成
+
 uuid = SecureRandom.uuid
-# パラメータを受け取る
+
 category = params[:category]
 category_custom = params[:category_custom]
 name = params[:name]
 name_furigana = params[:name_furigana]
-questions = params[:questions]
-question_customs = params[:question_customs]
-answers = params[:answers]
+avatar = params[:avatar]
+questions = params[:questions] || []
+question_customs = params[:question_customs] || []
+answers = params[:answers] || []
 message = params[:message]
 
-# セッションに保存
 session[:share_url] = "#{request.base_url}/share/#{uuid}"
 session[:uuid] = uuid
 session[:category] = category
@@ -67,7 +68,6 @@ session[:question_customs] = question_customs
 session[:answers] = answers
 session[:message] = message
 
-require 'json'
 questions = questions.to_json
 question_customs = question_customs.to_json
 answers = answers.to_json
@@ -75,14 +75,15 @@ answers = answers.to_json
 # DBに保存
 conn = settings.conn
 conn.exec_params(
-    "INSERT INTO profiles (uuid, category, category_custom, name, name_furigana, questions, question_customs, answers, message)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
+    "INSERT INTO profiles (uuid, category, category_custom, name, name_furigana, avatar, questions, question_customs, answers, message)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
     [
     uuid,
     category,
     category_custom,
     name,
     name_furigana,
+    avatar,
     questions,
     question_customs,
     answers,
@@ -99,6 +100,7 @@ get '/result' do
 @category_custom = session[:category_custom]
 @name = session[:name]
 @name_furigana = session[:name_furigana]
+@avatar = session[:avatar]
 @questions = session[:questions]
 @question_customs = session[:question_customs]
 @answers = session[:answers]
@@ -108,22 +110,6 @@ get '/result' do
 erb :result
 end
 
-#テスト用シェアページ
-get '/share' do
-@category = session[:category]
-@category_custom = session[:category_custom]
-@name = session[:name]
-@name_furigana = session[:name_furigana]
-@questions = session[:questions]
-@question_customs = session[:question_customs]
-@answers = session[:answers]
-@message = session[:message]
-@share_url = session[:share_url]
-
-erb :share  # views/share.erb
-end
-
-#UUID本番用シェアページ
 get '/share/:uuid' do
 uuid = params[:uuid]
 # DBからuuidに対応するデータを取得
@@ -142,6 +128,7 @@ raw = result[0]
 "name_furigana" => raw["name_furigana"],
 "category" => raw["category"],
 "category_custom" => raw["category_custom"],
+"avatar" => raw["avatar"],
 "questions" => JSON.parse(raw["questions"]),
 "question_customs" => JSON.parse(raw["question_customs"]),
 "answers" => JSON.parse(raw["answers"]),

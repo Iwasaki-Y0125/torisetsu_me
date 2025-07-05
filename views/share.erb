@@ -1,11 +1,15 @@
 <p><%= @profile["category"] %>のトリセツ</p>
 
 <p>なまえ：<%= @profile["name"] %></p>
-<p>ふりがな/よみかた：<%= @profile["@name_furigana"] %>
+<p>ふりがな/よみかた：<%= @profile["name_furigana"] %></p>
 
-<p><%= @profile["@message"] %></p>
+<p><%= @profile["message"] %></p>
 
-<img id="image" src="image/demo.PNG" alt="わたし" />
+<% if @profile["avatar"] && !@profile["avatar"].empty? %>
+<img id="avatar-image" src="/avatars/<%= @profile["avatar"] %>" alt="わたしのアバター">
+<% else %>
+<img id="avatar-image" src="/images/demo.PNG" alt="わたしのアバター" />
+<% end %>
 
 <ul>
 <% @profile["questions"].each_with_index do |q, i| %>
@@ -14,4 +18,4 @@
 </ul>
 
 
-<button><a href="/">自分も作ってみる！</a></button>
+<a href="/">自分も作ってみる！</a>

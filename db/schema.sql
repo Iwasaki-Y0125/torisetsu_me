@@ -7,6 +7,7 @@ CREATE TABLE profiles (
     name_furigana TEXT,
     category TEXT,
     category_custom TEXT,
+    avatar TEXT,
     questions JSONB,
     question_customs JSONB,
     answers JSONB,
@@ -14,6 +15,6 @@ CREATE TABLE profiles (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     CHECK (
-        jsonb_array_length(questions) = jsonb_array_length(answers)
+    COALESCE(jsonb_array_length(questions), 0) = COALESCE(jsonb_array_length(answers), 0)
     )
 );

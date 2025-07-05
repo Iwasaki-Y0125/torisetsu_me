@@ -5,7 +5,11 @@
 
 <p><%= @message %></p>
 
-<img id="image" src="image/demo.PNG" alt="わたし" />
+<% if @avatar && !@avatar.empty? %>
+<img id="avatar-image" src="/avatars/<%= @avatar %>" alt="わたしのアバター">
+<% else %>
+<img id="avatar-image" src="/images/demo.PNG" alt="わたしのアバター" />
+<% end %>
 
 <ul>
 <% @questions.each_with_index do |q, i| %>
@@ -18,10 +22,12 @@
 <input type="text" value="<%= session[:share_url] %>" id="shareUrl" readonly>
 <button onclick="copyToClipboard()">URLをコピー</button>
 
-<a href="/share">*テストシェア画面</a>
-
-<a id="postToX" class="x-post-button" href="#" target="_blank" rel="noopener noreferrer">
-    結果をXにポストする </a>
+<a id="postToX" class="x-post-button"
+href="https://twitter.com/intent/tweet?text=自分のトリセツを作りました！%0A
+わたしを伝える新しいコミュニケーションツール💌%0A%0A &url=<%= session[:share_url] %>#わたしのトリセツ"
+target="_blank" rel="noopener noreferrer">
+結果をXにポストする
+</a>
 
 <a href="/edit">作成画面に戻る</a>
 <a href="/edit">別のトリセツを作る</a>
