@@ -1,18 +1,31 @@
-<form action="/result" method="post">
+<form id="post_result" action="/result" method="post">
     <p>どんなトリセツをつくる？</p>
     <label for="category_select">カテゴリを選択：</label>
     <select id="category" name="category">
         <option value="" <%= @category == "" ? "selected" : "" %>>-- 選択してください --</option>
-        <option value="働くときのわたし" <%= @category == "働くときのわたし" ? "selected" : "" %>>はたらくときのわたし</option>
-        <option value="友だちとのわたし" <%= @category == "友だちとのわたし" ? "selected" : "" %>>友だちとのわたし</option>
-        <option value="ネットの中のわたし" <%= @category == "ネットの中のわたし" ? "selected" : "" %>>ネットの中のわたし</option>
-        <option value="いっしょに暮らすわたし" <%= @category == "いっしょに暮らすわたし" ? "selected" : "" %>>いっしょに暮らすわたし</option>
+        <option value="働くときのわたし" <%= @category == "働くとき" ? "selected" : "" %>>働くとき</option>
+        <option value="友だちとのわたし" <%= @category == "友だち" ? "selected" : "" %>>友だち</option>
+        <option value="ネットの中のわたし" <%= @category == "ネットの中" ? "selected" : "" %>>ネットの中</option>
+        <option value="いっしょに暮らすわたし" <%= @category == "いっしょに暮らすとき" ? "selected" : "" %>>いっしょに暮らすとき</option>
         <option value="other" <%= @category == "other" ? "selected" : "" %>>その他（自由入力）</option>
     </select>
-<%#Todo 通常時はグレーアウト&&入力不可　その他を選択したときのみ入力可能%>
     <div>
     <label for="category_custom">自由入力：</label>
-    <input type="text" id="category_custom" name="category_custom" placeholder="例：サークルでのわたし" value="<%= h @category_custom %>" disabled>
+    <input type="text" id="category_custom" name="category_custom" placeholder="例：サークルで" value="<%= h @category_custom %>" disabled>
+    </div>
+<br><br>
+    <label for="category_me_select">一人称を選択：</label>
+    <select id="category_me" name="category_me">
+        <option value="" <%= @category_me == "" ? "selected" : "" %>>-- 選択してください --</option>
+        <option value="わたし" <%= @category_me == "わたし" ? "selected" : "" %>>わたし</option>
+        <option value="ぼく" <%= @category_me == "ぼく" ? "selected" : "" %>>ぼく</option>
+        <option value="俺" <%= @category_me == "俺" ? "selected" : "" %>>俺</option>
+        <option value="ワシ" <%= @category_me == "ワシ" ? "selected" : "" %>>ワシ</option>
+        <option value="other" <%= @category_me == "other" ? "selected" : "" %>>その他（自由入力）</option>
+    </select>
+    <div>
+    <label for="category_me_custom">自由入力：</label>
+    <input type="text" id="category_me_custom" name="category_me_custom" placeholder="例：わたし" value="<%= h @category_me_custom %>" disabled>
     </div>
 
 <br><br>
@@ -23,7 +36,7 @@
 
     <div>
     <label for="name_furigana">ふりがな・よみかた：</label>
-    <input type="text" name="name_furigana" placeholder="たなか たろう" value="<%= h @name_furigana %>" />
+    <input type="text" name="name_furigana" id="name_furigana" placeholder="たなか たろう" value="<%= h @name_furigana %>" />
     </div>
 <br><br>
 
@@ -32,7 +45,7 @@
         <% 6.times do |i| %>
         <% avatar_name = "avatar#{i}.png" %>
         <label>
-        <input type="radio" name="avatar" value="<%= avatar_name %>" <%= @avatar == avatar_name ? 'checked' : '' %>>
+        <input type="radio" name="avatar" class="avatar" value="<%= avatar_name %>" <%= @avatar == avatar_name ? 'checked' : '' %>>
         <img src="/avatars/<%= avatar_name %>" alt="アバター<%= i %>">
         </label>
     <% end %>

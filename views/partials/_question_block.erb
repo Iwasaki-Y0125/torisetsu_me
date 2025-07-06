@@ -77,6 +77,6 @@
 
     <br><br>
     <label for="answer_<%= index %>">回答:</label>
-    <textarea id="answer_<%= index %>" name="answers[]" placeholder="こたえを書いてね"><%= h @answers[index - 1] || "" %></textarea>
+    <textarea class="answer" id="answer_<%= index %>" name="answers[]" placeholder="こたえを書いてね"><%= h @answers[index - 1] || "" %></textarea>
     <br><br>
 </fieldset>

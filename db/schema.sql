@@ -7,6 +7,8 @@ CREATE TABLE profiles (
     name_furigana TEXT,
     category TEXT,
     category_custom TEXT,
+    category_me TEXT,
+    category_me_custom TEXT,
     avatar TEXT,
     questions JSONB,
     question_customs JSONB,

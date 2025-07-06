@@ -1,6 +1,6 @@
 // Todo1 バリデーションの追加
 document.addEventListener("DOMContentLoaded", function () {
-//* カテゴリーの自由記述の入力規制
+  //* カテゴリーの自由記述の入力規制
   const categorySelect = document.getElementById("category");
   const categoryCustom = document.getElementById("category_custom");
   function toggleCategoryCustom() {
@@ -17,7 +17,24 @@ document.addEventListener("DOMContentLoaded", function () {
   toggleCategoryCustom();
   categorySelect.addEventListener("change", toggleCategoryCustom);
 
-//* 質問の自由記述の入力規制
+  //* 一人称の自由記述の入力規制
+  const categoryMeSelect = document.getElementById("category_me");
+  const categoryMeCustom = document.getElementById("category_me_custom");
+  function toggleCategoryMeCustom() {
+    if (categoryMeSelect.value === "other") {
+      categoryMeCustom.disabled = false;
+      categoryMeCustom.style.backgroundColor = "";
+      categoryMeCustom.style.opacity = "1";
+    } else {
+      categoryMeCustom.disabled = true;
+      categoryMeCustom.style.backgroundColor = "#eee";
+      categoryMeCustom.style.opacity = "0.6";
+    }
+  }
+  toggleCategoryMeCustom();
+  categoryMeSelect.addEventListener("change", toggleCategoryMeCustom);
+
+  //* 質問の自由記述の入力規制
   const questionSelects = document.querySelectorAll(".question-select");
   const questionCustoms = [];
   const answer_array = [];
@@ -46,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     questionSelect.addEventListener("change", toggleQuestionCustom);
   });
 
-//*未入力のアラート
+  //*未入力のアラート
   const nameInput = document.getElementById("name");
   const nameFuriganaInput = document.getElementById("name_furigana");
   const avatarRadios = document.querySelectorAll("input[name='avatar']");
@@ -61,6 +78,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (categorySelect.value === "other" && !categoryCustom.value.trim()) {
       errors.push("カテゴリの自由入力欄を入力してください");
+    }
+    if (!categoryMeSelect.value) {
+      errors.push("一人称を選択してください");
+    }
+    if (categoryMeSelect.value === "other" && !categoryMeCustom.value.trim()) {
+      errors.push("一人称の自由入力欄を入力してください");
     }
     if (!nameInput.value.trim()) {
       errors.push("名前を入力してください");

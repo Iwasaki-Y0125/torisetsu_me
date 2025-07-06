@@ -1,0 +1,172 @@
+/** ベーススタイル */
+html {
+  font-size: 100%;
+  margin: 0px;
+  touch-action: manipulation;
+}
+
+/** フォント全体設定 */
+/** タイトル用フォント */
+@font-face {
+  font-family: "misaki_gothic_2nd";
+  src: url("/fonts/misaki_gothic_2nd.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/** 本文用フォント */
+@font-face {
+  font-family: "JF-Dot-k12x10";
+  src: url("/fonts/JF-Dot-k12x10.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/** ライト⇔ダークモード　カラー設定 */
+/** ユーザー設定に合わせる用 */
+:root {
+  --bg: #e0e0e0; /*全体の背景色*/
+  --fg: #4d4c4b; /*全体の文字色*/
+  --nb: #f7f6f2; /*ナビゲーションの背景*/
+  --a: #0077cc; /*リンク：通常時*/
+  --av: #0000ff; /*リンク：訪問済み*/
+  --ah: #ff0000; /*リンク：ホバー時*/
+  --lb: #2d2f41; /*LBボタン背景*/
+  --lf: #fff; /*LBボタン文字*/
+  --lh: var(--ah); /*ボタン背景:ホバー時*/
+  --dl: #423a3a; /*準備中リンク*/
+  /* !トップ画像までつくれたらコメントアウト復活 */
+  /* #img-top {
+    content: url("image/top_light.GIF"); */
+  /* } */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /*ユーザーがダークモードを使っている*/
+    --bg: #2d2f41; /*全体の背景色*/
+    --fg: #fff; /*全体の文字色*/
+    --nb: #747796; /*ナビゲーションの背景*/
+    --a: #66bfff; /*リンク：通常時*/
+    --av: #00ffff; /*リンク：訪問済み*/
+    --ah: #ff0000; /*リンク：ホバー時*/
+    --lb: #f0f0f0; /*ボタン背景*/
+    --lf: #000; /*ボタン文字*/
+    --lh: var(--ah); /*ボタン背景:ホバー時*/
+    --dl: #1a4058; /*準備中リンク*/
+    /* !トップ画像までつくれたらコメントアウト復活 */
+    /* #img-top {
+        content: url("image/top_dark.GIF");
+    } */
+  }
+}
+
+/** JS用　ボタン切替時の色切替 */
+body.light-mode {
+  --bg: #e0e0e0; /*全体の背景色*/
+  --fg: #4d4c4b; /*全体の文字色*/
+  --nb: #ffffff; /*ナビゲーションの背景*/
+  --a: #0077cc; /*リンク：通常時*/
+  --av: #0000ff; /*リンク：訪問済み*/
+  --ah: #ff0000; /*リンク：ホバー時*/
+  --lb: #2d2f41; /*LBボタン背景*/
+  --lf: #fff; /*LBボタン文字*/
+  --lh: var(--ah); /*ボタン背景:ホバー時*/
+  --dl: #423a3a; /*準備中リンク*/
+  /* !トップ画像までつくれたらコメントアウト復活 */
+  /* #img-top {
+        content: url("image/top_light.GIF");
+      } */
+}
+
+body.dark-mode {
+  /*ユーザーがダークモードを使っている*/
+  --bg: #2d2f41; /*全体の背景色*/
+  --fg: #fff; /*全体の文字色*/
+  --nb: #747796; /*ナビゲーションの背景*/
+  --a: #66bfff; /*リンク：通常時*/
+  --av: #00ffff; /*リンク：訪問済み*/
+  --ah: #ff0000; /*リンク：ホバー時*/
+  --lb: #f0f0f0; /*LBボタン背景*/
+  --lf: #000; /*LBボタン文字*/
+  --lh: var(--ah); /*ボタン背景:ホバー時*/
+  --dl: #1a4058; /*準備中リンク*/
+  /* !トップ画像までつくれたらコメントアウト復活 */
+  /* #img-top {
+    content: url("image/top_dark.GIF");
+    } */
+}
+
+/** 全体設定 */
+body {
+  font-family: "JF-Dot-k12x10", "游ゴシック", sans-serif;
+  line-height: 2.5;
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+main,
+footer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+#title {
+  position: relative;
+  display: inline-block;
+}
+
+#top_h1 {
+  font-size: 5rem;
+}
+
+#top_i {
+  position: absolute;
+  top: -5px;
+  padding: 8px 16px;
+  background: var(--nb);
+  border: 2px solid var(--nb);
+  border-radius: 30px;
+  font-size: 1.2em;
+}
+
+/* 吹き出しの三角（下向き） */
+#top_i::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: 7px;
+  border: 15px solid transparent;
+  border-top: 15px solid var(--nb);
+}
+
+#SiteDescription {
+  background-color: var(--nb);
+  border-radius: 10px;
+  border: 10px solid var(--nb);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.button {
+  display: inline-block;
+  font-size: 2.5rem;
+  width: 180px;
+  height: 100px;
+  background-color: var(--lb);
+  color: var(--lf);
+  text-decoration: none;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 20px; /* 枠線の丸み*/
+  box-shadow: 0 7px 0 #acabab;
+  transition: all 0.2s;
+}
+
+.button:hover {
+  transform: translate(0, 7px);
+  box-shadow: 0 2px 0 #acabab;
+}

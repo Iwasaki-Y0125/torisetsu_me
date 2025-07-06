@@ -1,4 +1,4 @@
-<p><%= h @final_category %>のトリセツ</p>
+<p><%= h @final_category %>の<%= h @final_category_me %>のトリセツ</p>
 
 <p>なまえ：<%= h @name %></p>
 <p>ふりがな/よみかた：<%= h @name_furigana %></p>
@@ -20,7 +20,7 @@
 
 <p>あなたの共有URL：</p>
 <input type="text" value="<%= session[:share_url] %>" id="shareUrl" readonly>
-<button onclick="copyToClipboard()">URLをコピー</button>
+<button id="copy_url">URLをコピー</button>
 
 <% encoded_text = ERB::Util.url_encode("自分のトリセツを作りました！\nわたしを伝える新しいコミュニケーションツール💌") %>
 <% encoded_url = ERB::Util.url_encode(session[:share_url]) %>
@@ -33,4 +33,6 @@ target="_blank" rel="noopener noreferrer">
 </a>
 
 <a href="/edit">作成画面に戻る</a>
-<a href="/edit">新しいトリセツを作る</a>
+<form action="/clear_session_and_redirect" method="POST" onsubmit="return confirm('今作ったトリセツは再編集できなくなりますがよろしいですか？')">
+<button type="submit">新しいトリセツを作る</button>
+</form>
