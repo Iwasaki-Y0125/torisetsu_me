@@ -2,6 +2,8 @@
 // 1-1自由入力欄をグレーアウトかつ入力できないようにする
 // 1-2選択肢でその他を選ぶイベントの追加
 // 1-3イベント時にグレーアウトの解除と入力可能の状態にする
+
+// *カテゴリー  //
 document.addEventListener("DOMContentLoaded", function () {
   const categorySelect = document.getElementById("category");
   const categoryCustom = document.getElementById("category_custom");
@@ -22,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
   categorySelect.addEventListener("change",isCategoryCustom);
 });
 
-
+// *質問  //
 document.addEventListener("DOMContentLoaded", function () {
   const questionSelects = document.querySelectorAll(".question-select");
 
@@ -48,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// Todo2 バリデーションチェックの追加
+
+
 
 // Todo3 リザルト画面で「URLをコピー」ボタンでコピーできるようにする
 
