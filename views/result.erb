@@ -1,9 +1,9 @@
-<p><%= @name %>のトリセツ</p>
+<p><%= h @final_category %>のトリセツ</p>
 
-<p>なまえ：<%= @name %></p>
-<p>ふりがな/よみかた：<%= @name_furigana %></p>
+<p>なまえ：<%= h @name %></p>
+<p>ふりがな/よみかた：<%= h @name_furigana %></p>
 
-<p><%= @message %></p>
+<p><%= h @message %></p>
 
 <% if @avatar && !@avatar.empty? %>
 <img id="avatar-image" src="/avatars/<%= @avatar %>" alt="わたしのアバター">
@@ -12,8 +12,8 @@
 <% end %>
 
 <ul>
-<% @questions.each_with_index do |q, i| %>
-    <li><%= q %> : <%= @answers[i] %></li>
+<% @final_questions.each_with_index do |q, i| %>
+    <li><%= h q %> : <%= h @answers[i] %></li>
 <% end %>
 </ul>
 
@@ -22,12 +22,15 @@
 <input type="text" value="<%= session[:share_url] %>" id="shareUrl" readonly>
 <button onclick="copyToClipboard()">URLをコピー</button>
 
+<% encoded_text = ERB::Util.url_encode("自分のトリセツを作りました！\nわたしを伝える新しいコミュニケーションツール💌") %>
+<% encoded_url = ERB::Util.url_encode(session[:share_url]) %>
+
 <a id="postToX" class="x-post-button"
 href="https://twitter.com/intent/tweet?text=自分のトリセツを作りました！%0A
-わたしを伝える新しいコミュニケーションツール💌%0A%0A &url=<%= session[:share_url] %>#わたしのトリセツ"
+わたしを伝える新しいコミュニケーションツール💌%0A%0A &url=<%= h session[:share_url] %>#わたしのトリセツ"
 target="_blank" rel="noopener noreferrer">
 結果をXにポストする
 </a>
 
 <a href="/edit">作成画面に戻る</a>
-<a href="/edit">別のトリセツを作る</a>
+<a href="/edit">新しいトリセツを作る</a>

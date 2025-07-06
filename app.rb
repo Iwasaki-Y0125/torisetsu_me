@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'erb'
 require 'pg'
 require 'securerandom'
 require 'json'
@@ -22,6 +23,12 @@ configure do
 
 set :conn, conn
 set :bind, '0.0.0.0'
+end
+
+helpers do
+  def h(text)
+    Rack::Utils.escape_html(text)
+  end
 end
 
 get '/' do
@@ -57,14 +64,33 @@ question_customs = params[:question_customs] || []
 answers = params[:answers] || []
 message = params[:message]
 
+category_custom_str = category_custom.to_s.strip
+final_category =
+  if category == 'other' && !category_custom_str.empty?
+    category_custom_str
+else
+    category
+end
+
+final_questions = questions.map.with_index do |q, i|
+  questions_custom_str = question_customs[i].to_s.strip
+    if q == 'other' && !questions_custom_str.empty?
+      questions_custom_str
+  else
+      q
+  end
+end
+
 session[:share_url] = "#{request.base_url}/share/#{uuid}"
 session[:uuid] = uuid
 session[:category] = category
 session[:category_custom] = category_custom
+session[:final_category] = final_category
 session[:name] = name
 session[:name_furigana] = name_furigana
 session[:questions] = questions
 session[:question_customs] = question_customs
+session[:final_questions] = final_questions
 session[:answers] = answers
 session[:message] = message
 
@@ -96,13 +122,11 @@ end
 
 get '/result' do
 # セッションの値をインスタンス変数に渡す
-@category = session[:category]
-@category_custom = session[:category_custom]
+@final_category = session[:final_category]
 @name = session[:name]
 @name_furigana = session[:name_furigana]
 @avatar = session[:avatar]
-@questions = session[:questions]
-@question_customs = session[:question_customs]
+@final_questions = session[:final_questions]
 @answers = session[:answers]
 @message = session[:message]
 @share_url = session[:share_url]
@@ -112,28 +136,53 @@ end
 
 get '/share/:uuid' do
 uuid = params[:uuid]
-# DBからuuidに対応するデータを取得
+
 result = settings.conn.exec_params("SELECT * FROM profiles WHERE uuid = $1", [uuid])
 
 if result.ntuples == 0
-    status 404
-    return "指定されたプロフィールは存在しません"
+  status 404
+  return "指定されたプロフィールは存在しません"
 end
 
 raw = result[0]
+
+category = raw["category"]
+category_custom = raw["category_custom"]
+
+questions = JSON.parse(raw["questions"])
+question_customs = JSON.parse(raw["question_customs"])
+
+category_custom_str = category_custom.to_s.strip
+final_category =
+  if category == 'other' && !category_custom.strip.empty?
+    category_custom_str
+else
+  category
+end
+
+final_questions = questions.map.with_index do |q, i|
+  questions_custom_str = question_customs[i].to_s.strip
+  if q == 'other' && !questions_custom_str.empty?
+    questions_custom_str
+  else
+    q
+  end
+end
 
 @profile = {
 "uuid" => raw["uuid"],
 "name" => raw["name"],
 "name_furigana" => raw["name_furigana"],
-"category" => raw["category"],
-"category_custom" => raw["category_custom"],
 "avatar" => raw["avatar"],
-"questions" => JSON.parse(raw["questions"]),
-"question_customs" => JSON.parse(raw["question_customs"]),
+"category" => category,
+"category_custom" => category_custom,
+"final_category" => final_category,
+"questions" => questions,
+"question_customs" => question_customs,
+"final_questions" => final_questions,
 "answers" => JSON.parse(raw["answers"]),
 "message" => raw["message"]
 }
 
-erb :share  # 共有画面テンプレート
+erb :share
 end

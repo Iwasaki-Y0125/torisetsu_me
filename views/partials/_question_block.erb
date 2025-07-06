@@ -69,14 +69,14 @@
     </select>
 
     <br><br>
-    <%#Todo JSでその他を選択したときのみ表示%>
+
     <div>
     <label for="question_custom_<%= index %>">その他（自由入力）：</label>
-        <textarea name="question_customs[]" id="question_custom_<%= index %>" placeholder="操作説明：やる気スイッチはどこ？" ><%= @question_customs[index - 1] || "" %></textarea>
+        <textarea name="question_customs[]" id="question_custom_<%= index %>" placeholder="操作説明：やる気スイッチはどこ？" ><%= h @question_customs[index - 1] || "" %></textarea>
     </div>
 
     <br><br>
     <label for="answer_<%= index %>">回答:</label>
-    <textarea id="answer_<%= index %>" name="answers[]" placeholder="こたえを書いてね"><%= @answers[index - 1] || "" %></textarea>
+    <textarea id="answer_<%= index %>" name="answers[]" placeholder="こたえを書いてね"><%= h @answers[index - 1] || "" %></textarea>
     <br><br>
 </fieldset>

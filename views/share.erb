@@ -1,19 +1,19 @@
-<p><%= @profile["category"] %>のトリセツ</p>
+<p><%= h @profile["final_category"] %>のトリセツ</p>
 
-<p>なまえ：<%= @profile["name"] %></p>
-<p>ふりがな/よみかた：<%= @profile["name_furigana"] %></p>
+<p>なまえ：<%= h @profile["name"] %></p>
+<p>ふりがな/よみかた：<%= h @profile["name_furigana"] %></p>
 
-<p><%= @profile["message"] %></p>
+<p><%= h @profile["message"] %></p>
 
 <% if @profile["avatar"] && !@profile["avatar"].empty? %>
 <img id="avatar-image" src="/avatars/<%= @profile["avatar"] %>" alt="わたしのアバター">
 <% else %>
-<img id="avatar-image" src="/images/demo.png" alt="わたしのアバター" />
+<img id="avatar-image" src="/avatars/demo.png" alt="わたしのアバター" />
 <% end %>
 
 <ul>
-<% @profile["questions"].each_with_index do |q, i| %>
-    <li><%= q %> : <%= @profile["answers"][i] %></li>
+<% @profile["final_questions"].each_with_index do |q, i| %>
+    <li><%= h q %> : <%= h @profile["answers"][i] %></li>
 <% end %>
 </ul>
 
