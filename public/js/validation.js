@@ -1,8 +1,8 @@
-// Todo2 バリデーションの追加
+// Todo1 バリデーションの追加
 document.addEventListener("DOMContentLoaded", function () {
+//* カテゴリーの自由記述の入力規制
   const categorySelect = document.getElementById("category");
   const categoryCustom = document.getElementById("category_custom");
-
   function toggleCategoryCustom() {
     if (categorySelect.value === "other") {
       categoryCustom.disabled = false;
@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
       categoryCustom.style.opacity = "0.6";
     }
   }
-
   toggleCategoryCustom();
   categorySelect.addEventListener("change", toggleCategoryCustom);
 
+//* 質問の自由記述の入力規制
   const questionSelects = document.querySelectorAll(".question-select");
   const questionCustoms = [];
   const answer_array = [];
@@ -42,11 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
         questionCustom.style.opacity = "0.6";
       }
     }
-
     toggleQuestionCustom();
     questionSelect.addEventListener("change", toggleQuestionCustom);
   });
 
+//*未入力のアラート
   const nameInput = document.getElementById("name");
   const nameFuriganaInput = document.getElementById("name_furigana");
   const avatarRadios = document.querySelectorAll("input[name='avatar']");

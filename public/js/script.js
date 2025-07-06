@@ -1,58 +1,25 @@
-// Todo1 その他を選んだら、自由入力欄のグレーアウトが消えて入力できるようになる
-// 1-1自由入力欄をグレーアウトかつ入力できないようにする
-// 1-2選択肢でその他を選ぶイベントの追加
-// 1-3イベント時にグレーアウトの解除と入力可能の状態にする
-
-// *カテゴリー  //
+// Todo2 リザルト画面で「URLをコピー」ボタンでコピーできるようにする
 document.addEventListener("DOMContentLoaded", function () {
-  const categorySelect = document.getElementById("category");
-  const categoryCustom = document.getElementById("category_custom");
+  const copyBtn = document.getElementById("copy_url");
+  const shareUrlInput = document.getElementById("shareUrl");
 
-  function isCategoryCustom() {
-    if (categorySelect.value === "other"){
-      categoryCustom.disabled = false;
-      categoryCustom.style.backgroundColor = ""
-      categoryCustom.style.opacity = "1";
-    }else{
-      categoryCustom.disabled = true;
-      categoryCustom.style.backgroundColor = "#eee";
-      categoryCustom.style.opacity = "0.6";
+  copyBtn.addEventListener("click", function () {
+    const url = shareUrlInput.value;
+
+    if (navigator.clipboard) {
+      navigator.clipboard
+        .writeText(url)
+        .then(() => {
+          alert("URLをコピーしました！");
+        })
+        .catch((err) => {
+          alert("コピーに失敗しました。手動でコピーしてください。");
+          console.error("Clipboard copy failed:", err);
+        });
+    } else {
+      alert("このブラウザではコピー機能がサポートされていません。");
     }
-  }
-
-  isCategoryCustom();
-  categorySelect.addEventListener("change",isCategoryCustom);
-});
-
-// *質問  //
-document.addEventListener("DOMContentLoaded", function () {
-  const questionSelects = document.querySelectorAll(".question-select");
-
-  questionSelects.forEach((questionSelect) => {
-    const index = questionSelect.id.split("_")[1];
-    const questionCustom = document.getElementById(`question_custom_${index}`);
-
-    function isQuestionCustom() {
-      if (questionSelect.value === "other") {
-        questionCustom.readOnly = false;
-        questionCustom.style.backgroundColor = "";
-        questionCustom.style.opacity = "1";
-      } else {
-        questionCustom.readOnly = true;
-        questionCustom.style.backgroundColor = "#eee";
-        questionCustom.style.opacity = "0.6";
-      }
-    }
-
-    isQuestionCustom();
-    questionSelect.addEventListener("change", isQuestionCustom);
   });
 });
 
-
-
-
-
-// Todo3 リザルト画面で「URLをコピー」ボタンでコピーできるようにする
-
-// Todo4 新しいトリセツを作るでセッションの削除
+// Todo3 新しいトリセツを作るでセッションの削除
