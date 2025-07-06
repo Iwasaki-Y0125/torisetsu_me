@@ -1,20 +1,25 @@
 <form id="post_result" action="/result" method="post">
-    <p>どんなトリセツをつくる？</p>
-    <label for="category_select">カテゴリを選択：</label>
+
+    <fieldset id="category_fieldset">
+
+    <p id="edit_description"><br>どんなトリセツをつくる？
+    <br><br>例：「働くとき」の「わたし」<br> 　「友だちと」の「ぼく」</p>
+
+    <label for="category_select">カテゴリ選択</label>
     <select id="category" name="category">
         <option value="" <%= @category == "" ? "selected" : "" %>>-- 選択してください --</option>
-        <option value="働くときのわたし" <%= @category == "働くとき" ? "selected" : "" %>>働くとき</option>
-        <option value="友だちとのわたし" <%= @category == "友だち" ? "selected" : "" %>>友だち</option>
-        <option value="ネットの中のわたし" <%= @category == "ネットの中" ? "selected" : "" %>>ネットの中</option>
-        <option value="いっしょに暮らすわたし" <%= @category == "いっしょに暮らすとき" ? "selected" : "" %>>いっしょに暮らすとき</option>
+        <option value="働くとき" <%= @category == "働くとき" ? "selected" : "" %>>働くとき</option>
+        <option value="友だちと" <%= @category == "友だちと" ? "selected" : "" %>>友だちと</option>
+        <option value="ネットの中" <%= @category == "ネットの中" ? "selected" : "" %>>ネットの中</option>
+        <option value="いっしょに暮らすとき" <%= @category == "いっしょに暮らすとき" ? "selected" : "" %>>いっしょに暮らすとき</option>
         <option value="other" <%= @category == "other" ? "selected" : "" %>>その他（自由入力）</option>
     </select>
-    <div>
-    <label for="category_custom">自由入力：</label>
+
     <input type="text" id="category_custom" name="category_custom" placeholder="例：サークルで" value="<%= h @category_custom %>" disabled>
-    </div>
+
+
 <br><br>
-    <label for="category_me_select">一人称を選択：</label>
+    <label for="category_me_select">一人称を選択</label>
     <select id="category_me" name="category_me">
         <option value="" <%= @category_me == "" ? "selected" : "" %>>-- 選択してください --</option>
         <option value="わたし" <%= @category_me == "わたし" ? "selected" : "" %>>わたし</option>
@@ -23,21 +28,19 @@
         <option value="ワシ" <%= @category_me == "ワシ" ? "selected" : "" %>>ワシ</option>
         <option value="other" <%= @category_me == "other" ? "selected" : "" %>>その他（自由入力）</option>
     </select>
-    <div>
-    <label for="category_me_custom">自由入力：</label>
+
     <input type="text" id="category_me_custom" name="category_me_custom" placeholder="例：わたし" value="<%= h @category_me_custom %>" disabled>
-    </div>
+    <p>好きな文言を入力するときは、その他（自由入力）を選んでね</p>
+    </fieldset>
 
 <br><br>
-    <div>
-        <label for="name">名前：</label>
-        <input type="text" name="name" id="name" placeholder="田中 太郎" value="<%= h @name %>" />
-    </div>
+    <fieldset id="name_fieldset">
+        <label for="name">名　　前　</label>
+        <input type="text" name="name" id="name" placeholder="田中 太郎　or　たーちゃん" value="<%= h @name %>" />
+<br>
+    <label for="name_furigana">ふりがな　</label>
+    <input type="text" name="name_furigana" id="name_furigana" placeholder="たなか たろう　or　たーちゃん" value="<%= h @name_furigana %>" />
 
-    <div>
-    <label for="name_furigana">ふりがな・よみかた：</label>
-    <input type="text" name="name_furigana" id="name_furigana" placeholder="たなか たろう" value="<%= h @name_furigana %>" />
-    </div>
 <br><br>
 
     <p>どのわたしを選ぶ？</p>
@@ -46,21 +49,21 @@
         <% avatar_name = "avatar#{i}.png" %>
         <label>
         <input type="radio" name="avatar" class="avatar" value="<%= avatar_name %>" <%= @avatar == avatar_name ? 'checked' : '' %>>
-        <img src="/avatars/<%= avatar_name %>" alt="アバター<%= i %>">
+        <img class="avatar_image" src="/avatars/<%= avatar_name %>" alt="アバター<%= i %>">
         </label>
     <% end %>
     </div>
-
+    </fieldset>
 <br><br>
     <% 5.times do |i| %>
     <%= erb :"partials/_question_block", locals: { index: i + 1 } %>
     <% end %>
 
 <br><br>
-    <label for="message">みんなにひとこと:</label>
-    <textarea id="message" name="message"><%= h @message %></textarea>
+    <label for="message">みんなにひとこと</label>
+    <textarea id="message" name="message" placeholder="よろしくおねがいします！"><%= h @message %></textarea>
 <br><br>
 
-    <button type="submit">トリセツをつくる</button>
+    <button type="submit" id="edit_button">トリセツを<br>つくる</button>
 
 </form>

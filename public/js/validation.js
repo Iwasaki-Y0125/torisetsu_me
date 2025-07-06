@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
       categoryCustom.style.opacity = "1";
     } else {
       categoryCustom.disabled = true;
-      categoryCustom.style.backgroundColor = "#eee";
+      categoryCustom.style.backgroundColor = "#bbb";
       categoryCustom.style.opacity = "0.6";
     }
   }
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
       categoryMeCustom.style.opacity = "1";
     } else {
       categoryMeCustom.disabled = true;
-      categoryMeCustom.style.backgroundColor = "#eee";
+      categoryMeCustom.style.backgroundColor = "#bbb";
       categoryMeCustom.style.opacity = "0.6";
     }
   }
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         questionCustom.style.opacity = "1";
       } else {
         questionCustom.readOnly = true;
-        questionCustom.style.backgroundColor = "#eee";
+        questionCustom.style.backgroundColor = "#bbb";
         questionCustom.style.opacity = "0.6";
       }
     }

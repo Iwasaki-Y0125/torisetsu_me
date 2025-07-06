@@ -1,6 +1,6 @@
-<p>トリセツ<%= index %></p>
+<fieldset id="question_fieldset">
+<p id="torisetu_num">トリセツ　<%= index %></p>
 
-<fieldset>
 <% question_options = [
 {
     label: "型番（自分の基本仕様）",
@@ -54,7 +54,7 @@
 }
 ] %>
 
-<label for="question_<%= index %>">質問を選択：</label>
+<label for="question_<%= index %>">質問を選択</label>
     <select class="question-select" id="question_<%= index %>" name="questions[]">
         <option value="" <%= @questions[index - 1] == "" ? "selected" : "" %>>-- 選択してください --</option>
         <option value="other" <%= @questions[index - 1] == "other" ? "selected" : "" %>>その他（自由入力）</option>
@@ -71,12 +71,14 @@
     <br><br>
 
     <div>
-    <label for="question_custom_<%= index %>">その他（自由入力）：</label>
         <textarea class="question-custom" id="question_custom_<%= index %>" name="question_customs[]"  placeholder="操作説明：やる気スイッチはどこ？" ><%= h @question_customs[index - 1] || "" %></textarea>
-    </div>
 
-    <br><br>
-    <label for="answer_<%= index %>">回答:</label>
+    <p id="torisetsu_attention">質問に好きな文言を入力するときは、その他（自由入力）を選んでね</p>
+    </div>
+    <br>
+    <div>
+    <label for="answer_<%= index %>">回答</label> <br>
     <textarea class="answer" id="answer_<%= index %>" name="answers[]" placeholder="こたえを書いてね"><%= h @answers[index - 1] || "" %></textarea>
+    </div>
     <br><br>
 </fieldset>
