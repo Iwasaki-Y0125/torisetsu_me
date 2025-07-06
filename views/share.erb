@@ -8,7 +8,7 @@
 <% if @profile["avatar"] && !@profile["avatar"].empty? %>
 <img id="avatar-image" src="/avatars/<%= @profile["avatar"] %>" alt="わたしのアバター">
 <% else %>
-<img id="avatar-image" src="/images/demo.PNG" alt="わたしのアバター" />
+<img id="avatar-image" src="/images/demo.png" alt="わたしのアバター" />
 <% end %>
 
 <ul>
@@ -16,6 +16,5 @@
     <li><%= q %> : <%= @profile["answers"][i] %></li>
 <% end %>
 </ul>
-
 
 <a href="/">自分も作ってみる！</a>
