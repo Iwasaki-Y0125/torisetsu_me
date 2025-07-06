@@ -20,6 +20,4 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("このブラウザではコピー機能がサポートされていません。");
     }
   });
-});
-
-// Todo3 新しいトリセツを作るでセッションの削除
+  });
