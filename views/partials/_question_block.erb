@@ -55,7 +55,7 @@
 ] %>
 
 <label for="question_<%= index %>">質問を選択：</label>
-    <select id="question_<%= index %>" name="questions[]">
+    <select class="question-select" id="question_<%= index %>" name="questions[]">
         <option value="" <%= @questions[index - 1] == "" ? "selected" : "" %>>-- 選択してください --</option>
         <option value="other" <%= @questions[index - 1] == "other" ? "selected" : "" %>>その他（自由入力）</option>
 
@@ -72,7 +72,7 @@
 
     <div>
     <label for="question_custom_<%= index %>">その他（自由入力）：</label>
-        <textarea name="question_customs[]" id="question_custom_<%= index %>" placeholder="操作説明：やる気スイッチはどこ？" ><%= h @question_customs[index - 1] || "" %></textarea>
+        <textarea class="question-custom" id="question_custom_<%= index %>" name="question_customs[]"  placeholder="操作説明：やる気スイッチはどこ？" ><%= h @question_customs[index - 1] || "" %></textarea>
     </div>
 
     <br><br>

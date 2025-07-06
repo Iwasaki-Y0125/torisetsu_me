@@ -9,10 +9,10 @@
         <option value="いっしょに暮らすわたし" <%= @category == "いっしょに暮らすわたし" ? "selected" : "" %>>いっしょに暮らすわたし</option>
         <option value="other" <%= @category == "other" ? "selected" : "" %>>その他（自由入力）</option>
     </select>
-<%#Todo JSでその他を選択したときのみ表示%>
+<%#Todo 通常時はグレーアウト&&入力不可　その他を選択したときのみ入力可能%>
     <div>
     <label for="category_custom">自由入力：</label>
-    <input type="text" name="category_custom" placeholder="例：サークルでのわたし" value="<%= h @category_custom %>">
+    <input type="text" id="category_custom" name="category_custom" placeholder="例：サークルでのわたし" value="<%= h @category_custom %>" disabled>
     </div>
 
 <br><br>
@@ -23,7 +23,7 @@
 
     <div>
     <label for="name_furigana">ふりがな・よみかた：</label>
-    <input type="text" name="name_furigana" placeholder="たなか　たろう" value="<%= h @name_furigana %>" />
+    <input type="text" name="name_furigana" placeholder="たなか たろう" value="<%= h @name_furigana %>" />
     </div>
 <br><br>
 
