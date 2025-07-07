@@ -1,20 +1,30 @@
-<p><%= h @profile["final_category"] %>の<%= h @profile["final_category_me"] %>のトリセツ</p>
+<article class="Result_display">
+<div class="Name_and_message">
+<h1><%= h @profile["final_category"] %>の<br><%= h @profile["final_category_me"] %>のトリセツ</h1>
 
-<p>なまえ：<%= h @profile["name"] %></p>
-<p>ふりがな/よみかた：<%= h @profile["name_furigana"] %></p>
+<div class="name_box">
+<p class="result_name_label">なまえ</p>
+<h2><%= h @profile["name"] %></h2>
+<p class="result_furigana"><%= h @profile["name_furigana"] %></p>
+</div>
 
-<p><%= h @profile["message"] %></p>
-
+<p class="result_message"><%= h @profile["message"] %></p>
 <% if @profile["avatar"] && !@profile["avatar"].empty? %>
-<img id="avatar-image" src="/avatars/<%= @profile["avatar"] %>" alt="わたしのアバター">
+<img class="avatar-image-piked" src="/avatars/<%= @profile["avatar"] %>" alt="わたしのアバター">
 <% else %>
-<img id="avatar-image" src="/avatars/demo.png" alt="わたしのアバター" />
+<img class="avatar-image-piked" src="/avatars/demo.png" alt="わたしのアバター" />
 <% end %>
+</div>
 
+<div class="Questions_and_Answers">
 <ul>
 <% @profile["final_questions"].each_with_index do |q, i| %>
-    <li><%= h q %> : <%= h @profile["answers"][i] %></li>
+    <li><%= h q %>
+    <span class="answer-text"><%= h @profile["answers"][i] %></span>
+    </li>
 <% end %>
 </ul>
-
-<a href="/">自分も作ってみる！</a>
+</div>
+</article>
+<br>
+<a id="Try_Btn" href="/">自分も作ってみる！</a>

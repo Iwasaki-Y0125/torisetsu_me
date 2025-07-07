@@ -336,7 +336,7 @@ fieldset{
 
 /** リザルト画面 */
 
-#Result_display{
+.Result_display {
     display: flex;
     max-width: 1200px;
     width: 100%; /* 横幅は可能な限り広げる（画面幅に応じて） */
@@ -359,39 +359,39 @@ article h1{
     margin-top:5rem ;
 }
 
-#Name_and_message{
+.Name_and_message{
     flex: 2;
 }
 
-#Questions_and_Answers{
+.Questions_and_Answers{
     flex: 4;
 }
 
-#Name_and_message h1 {
+.Name_and_message h1 {
     font-size: 1.8rem;
     margin-bottom: 5rem;
     line-height: 2;
 }
 
-#name_box {
+.name_box {
     border-radius: 8px;
     padding: 0.5rem;
     background-color: var(--mb);
     color: var(--mf);
 }
 
-#Name_and_message h2 {
+.Name_and_message h2 {
     font-size: 2.5rem;
     margin-bottom: 0;
 }
 
-#result_furigana {
+.result_furigana {
     font-size: 1.1rem;
     line-height: 0;
     margin-top: 0.5rem;
     margin-bottom: 5rem;
 }
-#result_name_labe{
+.result_name_labe{
     position: relative;
     padding: 20px 24px;
     font-size: 1rem;
@@ -400,7 +400,7 @@ article h1{
 }
 
 
-#result_message {
+.result_message {
     position: relative;
     padding: 20px 24px;
     color: #000;
@@ -413,7 +413,7 @@ article h1{
 }
 
 /* 吹き出しの三角（下向き） */
-#result_message::before {
+.result_message::before {
     content: "";
     position: absolute;
     top: 100%;
@@ -425,7 +425,7 @@ article h1{
 }
 
   /* 内側（三角形の中身） */
-#result_message::after {
+.result_message::after {
     content: "";
     position: absolute;
     top: 100%;
@@ -444,12 +444,12 @@ ul{
     text-align: left;
 }
 
-#Questions_and_Answers ul {
+.Questions_and_Answers ul {
     padding: 0;
     margin: 5rem;
 }
 
-#Questions_and_Answers li {
+.Questions_and_Answers li {
     background-color: #f8f8f8;
     color : #000000;
     border-bottom: 3px solid #c0c0c0;
@@ -478,12 +478,12 @@ ul{
     font-size: 1em;
 }
 
-#copy_url, #postToX,
+#copy_url, #postToX,#Try_Btn,
 form button {
     font-family: "JF-Dot-k12x10", "游ゴシック", sans-serif;
     text-decoration: none;
     margin-top: 0em;
-    padding: 18px 25px;
+    padding: 18px 30px;
     background-color: var(--lb);
     color: var(--lf);
     border: none;
@@ -493,7 +493,12 @@ form button {
     transition: background-color 0.2s;
 }
 
-#copy_url:hover, #postToX:hover, form button:hover {
+/* #Try_Btn,
+form button {
+    padding: 18px 30px;
+} */
+
+#copy_url:hover, #postToX:hover,#Try_Btn:hover, form button:hover {
     background-color:var(--lh);
 }
 

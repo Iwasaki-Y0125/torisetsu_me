@@ -1,14 +1,14 @@
-<article id="Result_display">
-<div id="Name_and_message">
+<article class="Result_display">
+<div class="Name_and_message">
 <h1><%= h @final_category %>の<br><%= h @final_category_me %>のトリセツ</h1>
 
-<div id="name_box">
-<p id="result_name_label">なまえ</p>
+<div class="name_box">
+<p class="result_name_label">なまえ</p>
 <h2><%= h @name %></h2>
-<p id="result_furigana"><%= h @name_furigana %></p>
+<p class="result_furigana"><%= h @name_furigana %></p>
 </div>
 
-<p id="result_message"><%= h @message %></p>
+<p class="result_message"><%= h @message %></p>
 <% if @avatar && !@avatar.empty? %>
 <img class="avatar-image-piked" src="/avatars/<%= @avatar %>" alt="わたしのアバター">
 <% else %>
@@ -16,7 +16,7 @@
 <% end %>
 </div>
 
-<div id="Questions_and_Answers">
+<div class="Questions_and_Answers">
 <ul>
 <% @final_questions.each_with_index do |q, i| %>
     <li><%= h q %>
@@ -25,7 +25,6 @@
 <% end %>
 </ul>
 </div>
-
 </article>
 
 
