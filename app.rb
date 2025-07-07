@@ -23,6 +23,7 @@ configure do
 
 set :conn, conn
 set :bind, '0.0.0.0'
+set :port, ENV['PORT'] || 4567
 end
 
 helpers do
