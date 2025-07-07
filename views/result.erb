@@ -35,11 +35,11 @@
 <% encoded_url = ERB::Util.url_encode(session[:share_url]) %>
 <br><br>
 <a id="postToX" class="x-post-button"
-href="https://twitter.com/intent/tweet?text=自分のトリセツを作りました！%0A
-わたしを伝える新しいコミュニケーションツール💌%0A%0A &url=<%= h session[:share_url] %>#わたしのトリセツ"
+href="https://twitter.com/intent/tweet?text=<%= URI.encode_www_form_component("自分のトリセツを作りました！\nわたしを伝える新しいコミュニケーションツール💌\n#わたしのトリセツ") %>&url=<%= h session[:share_url] %>"
 target="_blank" rel="noopener noreferrer">
 結果をXにポストする
 </a>
+
 <br>
 <a href="/edit">作成画面に戻る</a>
 <form action="/clear_session_and_redirect" method="POST" onsubmit="return confirm('今作ったトリセツは再編集できなくなりますがよろしいですか？')">
