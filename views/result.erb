@@ -2,8 +2,12 @@
 <div id="Name_and_message">
 <h1><%= h @final_category %>の<br><%= h @final_category_me %>のトリセツ</h1>
 
-<h2>なまえ　<%= h @name %></h2>
-<p id="result_furigana">ふりがな　<%= h @name_furigana %></p>
+<div id="name_box">
+<p id="result_name_label">なまえ</p>
+<h2><%= h @name %></h2>
+<p id="result_furigana"><%= h @name_furigana %></p>
+</div>
+
 <p id="result_message"><%= h @message %></p>
 <% if @avatar && !@avatar.empty? %>
 <img class="avatar-image-piked" src="/avatars/<%= @avatar %>" alt="わたしのアバター">
