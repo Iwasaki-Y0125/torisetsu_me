@@ -176,7 +176,7 @@ footer {
     display: inline-block;
     font-size: 2rem;
     line-height: 1.5;
-    width: 250px;
+    width: 350px;
     height: 150px;
     background-color: var(--lb);
     color: var(--lf);
@@ -304,7 +304,7 @@ textarea{
 }
 
 #message{
-    max-width: 600px;
+    max-width: 300px;
     height: 80px;
     margin: 0rem 0 5rem 0;
 }
@@ -329,8 +329,7 @@ fieldset{
     margin: 5rem 0;
 }
 
-#torisetu_num
-{
+#torisetu_num{
     font-size: 2rem;
 }
 
@@ -492,11 +491,6 @@ form button {
     font-size: 1em;
     transition: background-color 0.2s;
 }
-
-/* #Try_Btn,
-form button {
-    padding: 18px 30px;
-} */
 
 #copy_url:hover, #postToX:hover,#Try_Btn:hover, form button:hover {
     background-color:var(--lh);
