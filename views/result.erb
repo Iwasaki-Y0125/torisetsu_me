@@ -1,37 +1,43 @@
-<p><%= h @final_category %>の<%= h @final_category_me %>のトリセツ</p>
+<article id="Result_display">
+<div id="Name_and_message">
+<h1><%= h @final_category %>の<br><%= h @final_category_me %>のトリセツ</h1>
 
-<p>なまえ：<%= h @name %></p>
-<p>ふりがな/よみかた：<%= h @name_furigana %></p>
-
-<p><%= h @message %></p>
-
+<h2>なまえ　<%= h @name %></h2>
+<p id="result_furigana">ふりがな　<%= h @name_furigana %></p>
+<p id="result_message"><%= h @message %></p>
 <% if @avatar && !@avatar.empty? %>
-<img id="avatar-image" src="/avatars/<%= @avatar %>" alt="わたしのアバター">
+<img class="avatar-image-piked" src="/avatars/<%= @avatar %>" alt="わたしのアバター">
 <% else %>
-<img id="avatar-image" src="/avatars/demo.png" alt="わたしのアバター" />
+<img class="avatar-image-picked" src="/avatars/demo.png" alt="わたしのアバター" />
 <% end %>
+</div>
 
+<div id="Questions_and_Answers">
 <ul>
 <% @final_questions.each_with_index do |q, i| %>
-    <li><%= h q %> : <%= h @answers[i] %></li>
+    <li><%= h q %>
+    <span class="answer-text"><%= h @answers[i] %></span>
+    </li>
 <% end %>
 </ul>
+</div>
+
+</article>
 
 
-<p>あなたの共有URL：</p>
+<p>あなたの共有URL</p>
 <input type="text" value="<%= session[:share_url] %>" id="shareUrl" readonly>
 <button id="copy_url">URLをコピー</button>
-
 <% encoded_text = ERB::Util.url_encode("自分のトリセツを作りました！\nわたしを伝える新しいコミュニケーションツール💌") %>
 <% encoded_url = ERB::Util.url_encode(session[:share_url]) %>
-
+<br><br>
 <a id="postToX" class="x-post-button"
 href="https://twitter.com/intent/tweet?text=自分のトリセツを作りました！%0A
 わたしを伝える新しいコミュニケーションツール💌%0A%0A &url=<%= h session[:share_url] %>#わたしのトリセツ"
 target="_blank" rel="noopener noreferrer">
 結果をXにポストする
 </a>
-
+<br>
 <a href="/edit">作成画面に戻る</a>
 <form action="/clear_session_and_redirect" method="POST" onsubmit="return confirm('今作ったトリセツは再編集できなくなりますがよろしいですか？')">
 <button type="submit">新しいトリセツを作る</button>

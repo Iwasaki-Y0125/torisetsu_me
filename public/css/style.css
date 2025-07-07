@@ -100,7 +100,7 @@ body {
 
 main,
 footer {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
     text-align: center;
@@ -189,6 +189,11 @@ footer {
     box-shadow: 0 2px 0 #acabab;
 }
 
+#post_result{
+    max-width: 800px;
+    margin: 0 auto ;
+}
+
 #edit_description{
     line-height: 1.5rem;
     margin: 2rem auto;
@@ -227,9 +232,6 @@ select {
     max-width: 600px;
 }
 
-
-
-
 input{
     font-family: "JF-Dot-k12x10", "游ゴシック", sans-serif;
     font-size: 1rem;
@@ -251,7 +253,7 @@ input.avatar {
     display: none;
     }
 
-.avatar_image{
+.avatar_image, .avatar-image-piked{
     width: 200px;
     height: auto;
     display: inline-block;
@@ -277,7 +279,7 @@ textarea{
     padding: 1.5rem;
     margin: 1rem auto;
     width: 100%;
-    max-width: 600px;
+    max-width: 300px;
     border: 2px solid #666;
     border-radius: 8px;
 }
@@ -292,8 +294,8 @@ textarea{
 }
 
 .answer{
-    max-width: 600px;
-    height: 80px;
+    max-width: 300px;
+    height: 50px;
     margin: 1rem 0 0 1rem;
 }
 
@@ -326,4 +328,164 @@ fieldset{
 #torisetu_num
 {
     font-size: 2rem;
+}
+
+/** リザルト画面 */
+
+#Result_display{
+    display: flex;
+    max-width: 1200px;
+    width: 100%; /* 横幅は可能な限り広げる（画面幅に応じて） */
+    height: auto;
+    margin: 2rem auto; /* 中央寄せ */
+    padding: 3rem; /* スマホでも余白ができるように*/
+    background-color: var(--nb); /*背景色 */
+    /* border: 10px double rgb(167, 167, 167); */
+    border-radius: 10px; /* 枠線の丸み*/
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+article h1{
+    background-color:#fff ; /*背景色 */
+    color: #000;
+    border-radius: 10px; /* 枠線の丸み*/
+    padding: 1.5rem;
+    border-bottom: 1px solid #c0c0c0;
+    border-left: 50px solid #646464;
+    margin-top:5rem ;
+}
+
+#Name_and_message{
+    flex: 2;
+}
+
+#Questions_and_Answers{
+    flex: 4;
+}
+
+#Name_and_message h1 {
+    font-size: 1.8rem;
+    margin-bottom: 5rem;
+    line-height: 2;
+}
+
+#Name_and_message h2 {
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+
+#result_furigana {
+    font-size: 1.1rem;
+    line-height: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 5rem;
+}
+
+
+#result_message {
+    position: relative;
+    padding: 20px 24px;
+    color: #000;
+    background:#ffffff;
+    border: 2px solid var(--lb);
+    border-radius: 50px;
+    font-size: 1.2rem;
+    margin-top: 3rem;
+    line-height: 1.5;
+}
+
+/* 吹き出しの三角（下向き） */
+#result_message::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 60%;
+    transform: translateX(-50%);
+    border: 15px solid transparent;
+    border-top: 15px solid var(--lb);  /* 外枠の色 */
+    z-index: 0;
+}
+
+  /* 内側（三角形の中身） */
+#result_message::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 60%;
+    transform: translateX(-50%);
+    margin-top: -2px; /* 枠線分だけ上に */
+    border: 13px solid transparent;
+    border-top: 13px solid #ffffff;  /* 背景色と同じ */
+    z-index: 1;
+}
+
+/** 質問と回答 */
+
+ul{
+    list-style: none; /* リストのドットを消す */
+    text-align: left;
+}
+
+#Questions_and_Answers ul {
+    padding: 0;
+    margin: 5rem;
+}
+
+#Questions_and_Answers li {
+    background-color: #f8f8f8;
+    color : #000000;
+    border-bottom: 3px solid #c0c0c0;
+    border-left: 10px solid #646464;
+    padding: 30px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    line-height: 4;
+}
+
+.answer-text {
+    display: block;
+    font-size: 1.4rem;
+    margin-left: 1.5rem;
+    color: #00158a;
+}
+
+/* コピーURLなどの下部 */
+#shareUrl {
+    width: 80%;
+    max-width: 500px;
+    padding: 18px;
+    margin-top: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+#copy_url, #postToX,
+form button {
+    font-family: "JF-Dot-k12x10", "游ゴシック", sans-serif;
+    text-decoration: none;
+    margin-top: 0em;
+    padding: 18px 25px;
+    background-color: var(--lb);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s;
+}
+
+#copy_url:hover, #postToX:hover, form button:hover {
+    background-color:var(--lh);
+}
+
+  /* 作成画面リンク */
+a[href="/edit"] {
+    display: inline-block;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+}
+
+a[href="/edit"]:hover {
+    color:var(--lh);
 }
