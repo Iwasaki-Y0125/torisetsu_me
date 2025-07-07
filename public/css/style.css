@@ -341,7 +341,7 @@ fieldset{
     width: 100%; /* 横幅は可能な限り広げる（画面幅に応じて） */
     height: auto;
     margin: 2rem auto; /* 中央寄せ */
-    padding: 3rem; /* スマホでも余白ができるように*/
+    padding: 2rem; /* スマホでも余白ができるように*/
     background-color: var(--nb); /*背景色 */
     /* border: 10px double rgb(167, 167, 167); */
     border-radius: 10px; /* 枠線の丸み*/
@@ -498,11 +498,174 @@ form button {
 
   /* 作成画面リンク */
 a[href="/edit"] {
+    color: var(--lf);
     display: inline-block;
     margin-top: 5rem;
     margin-bottom: 2rem;
+    color:var(--a);
 }
 
 a[href="/edit"]:hover {
-    color:var(--lh);
+    color:var(--ah);
 }
+/* スマホ最適化用レスポンシブ設定 */
+@media screen and (max-width: 600px) {
+
+    .br-sp {
+        display: inline;
+      }
+      .br-pc {
+        display: none;
+      }
+
+    /* 基本的な余白と文字サイズ調整 */
+    body {
+      font-size: 90%;
+      line-height: 1.8;
+    }
+
+    #top_h1 {
+      font-size: 2.5rem;
+    }
+
+    #top_i {
+      font-size: 1rem;
+      padding: 6px 12px;
+    }
+
+    #top_button,
+    #edit_button {
+      width: 80%;
+      height: auto;
+      font-size: 1.8rem;
+      padding: 1.5rem;
+    }
+
+    #edit_description,
+    input,
+    select {
+      font-size: 1rem;
+      width: 80%;
+      max-width: 100%;
+    }
+
+    textarea {
+        font-size: 1rem;
+        width: 80%;
+        max-width: 80%;
+      }
+
+    #category_custom, #category_me_custom, .answer {
+        display: block;
+        width: 80%;
+        margin: 1rem auto !important; /* 中央寄せ ＋ 上下マージン */
+        float: none !important;  /* 万が一 float されてた場合の解除 */
+    }
+    .question-select{
+        width: 90%;
+        max-width: 100%;
+        font-size: 0.8rem;
+        height: auto;
+    }
+
+    .question-custom{
+        width: 75%;
+        max-width: 100%;
+    }
+
+
+
+    .avatar_image,
+    .avatar-image-piked {
+      width: 200px;
+      padding: 5px;
+    }
+
+    .question-custom {
+      margin: 1rem auto;
+    }
+
+    #torisetsu_attention {
+      margin: 1rem auto;
+    }
+
+    fieldset {
+      padding: 1rem;
+    }
+
+    .Result_display {
+    margin: 1rem auto !important; /* 中央寄せ ＋ 上下マージン */
+    float: none !important;  /* 万が一 float されてた場合の解除 */
+      width: 100%;
+      max-width: 280px;
+      flex-direction: column;
+    }
+
+    .Name_and_message h1 {
+        font-size: 1.2rem;
+        margin-bottom: 0rem;
+    }
+    .name_box {
+        border-radius: 8px;
+        padding-bottom: 1rem;
+        background-color: var(--mb);
+        color: var(--mf);
+    }
+
+    article h1 {
+      font-size: 1rem!important;
+      border-left: 20px solid #646464;
+      margin:0rem ;
+    }
+
+    .result_furigana {
+        font-size: 1.1rem;
+        line-height: 1;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .Name_and_message h2 {
+      font-size: 2rem;
+      margin-top:0rem ;
+    }
+
+    .result_message {
+      font-size: 1rem;
+      padding: 1rem;
+    }
+
+    .Questions_and_Answers ul {
+      margin: 1rem 0;
+    }
+
+    .Questions_and_Answers li {
+      padding:  1rem;
+      font-size: 0.8rem;
+      line-height: 2;
+    }
+
+    .answer-text {
+      font-size: 1.1rem;
+      margin-left: 1rem;
+    }
+
+    #shareUrl {
+      width: 80%;
+      font-size: 0.9em;
+    }
+
+    #copy_url,
+    #postToX,
+    #Try_Btn,
+    form button {
+      font-size: 0.9em;
+      padding: 1rem 1.2rem;
+      width: 90%;
+      margin-bottom: 1rem;
+    }
+
+    a[href="/edit"] {
+      font-size: 1.2rem;
+    }
+  }
