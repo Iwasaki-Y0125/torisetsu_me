@@ -1,7 +1,7 @@
 /** ベーススタイル */
 html {
     font-size: 100%;
-    margin: 0px;
+    margin: 0;
     touch-action: manipulation;
 }
 
@@ -123,12 +123,13 @@ footer {
 
 #top_i {
     position: absolute;
-    top: -5px;
-    padding: 8px 16px;
+    top: 30px;
+    left:-20px;
+    padding: 15px 25px;
     background: var(--nb);
     border: 2px solid var(--nb);
-    border-radius: 30px;
-    font-size: 1.2em;
+    border-radius: 50px;
+    font-size: 1.8rem;
 }
 
 /* 吹き出しの三角（下向き） */
@@ -153,7 +154,7 @@ footer {
 #top_button {
     display: inline-block;
     font-size: 2.5rem;
-    width: 180px;
+    width: 250px;
     height: 100px;
     background-color: var(--lb);
     color: var(--lf);
@@ -162,6 +163,7 @@ footer {
     border-radius: 20px;
     box-shadow: 0 7px 0 #acabab;
     transition: all 0.2s;
+    margin: 0;
 }
 
 #top_button:hover {
@@ -531,6 +533,8 @@ a[href="/edit"]:hover {
     #top_i {
       font-size: 1rem;
       padding: 6px 12px;
+      top: 5px;
+      left:-25px;
     }
 
     #top_button,
