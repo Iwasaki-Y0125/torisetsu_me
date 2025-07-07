@@ -88,9 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!nameInput.value.trim()) {
       errors.push("名前を入力してください");
     }
-    if (!nameFuriganaInput.value.trim()) {
-      errors.push("ふりがな・よみかたを入力してください");
-    }
     const avatarChecked = Array.from(avatarRadios).some((r) => r.checked);
     if (!avatarChecked) {
       errors.push("アバターを選択してください");
@@ -100,20 +97,30 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     questionSelects.forEach((select, i) => {
-      if (!select.value) {
-        errors.push(`トリセツ${i + 1}の質問を選択してください`);
+      const isFirst = i === 0;
+      if (isFirst) {
+        if (!select.value) {errors.push(`トリセツ1の質問を選択してください`);
       }
-      if (select.value === "other") {
-        if (!questionCustoms[i].value.trim()) {
-          errors.push(
-            `トリセツ${i + 1}の「その他（自由入力）」を入力してください`
-          );
-        }
+        if (select.value === "other" && !questionCustoms[i].value.trim()) {
+      errors.push(`トリセツ1の「その他（自由入力）」を入力してください`);
       }
-
       if (!answer_array[i].value.trim()) {
-        errors.push(`トリセツ${i + 1}の回答を入力してください`);
+      errors.push(`トリセツ1の回答を入力してください`);
       }
+      } else {
+      const hasAnyInput =
+      select.value || questionCustoms[i].value.trim() || answer_array[i].value.trim();
+
+      if (hasAnyInput) {
+        if (!select.value) {
+        errors.push(`トリセツ${i + 1}の質問を選択してください`);
+        }
+        if (select.value === "other" && !questionCustoms[i].value.trim()) {
+        errors.push(`トリセツ${i + 1}の「その他（自由入力）」を入力してください`);
+        }
+        if (!answer_array[i].value.trim()) {
+        errors.push(`トリセツ${i + 1}の回答を入力してください`);
+        }}}
     });
 
     if (errors.length > 0) {
