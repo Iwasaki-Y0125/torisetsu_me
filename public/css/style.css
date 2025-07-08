@@ -510,6 +510,7 @@ a[href="/edit"] {
 a[href="/edit"]:hover {
     color:var(--ah);
 }
+
 /* スマホ最適化用レスポンシブ設定 */
 @media screen and (max-width: 600px) {
 
