@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>わたしのトリセツ.me</title>
   <link rel="stylesheet" href="/css/style.css">
+    <!-- OGPタグ -->
+  <meta property="og:title" content="わたしのトリセツ" />
+  <meta property="og:description" content="自己紹介" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <% if @profile && @profile["uuid"] %>  <!--ガード節安全確認 -->
+  <meta property="og:image" content="<%= url("/ogp/#{@profile["uuid"]}.png") %>"/>
+  <% end %>
 </head>
 <body>
   <main>

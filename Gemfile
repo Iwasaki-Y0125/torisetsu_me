@@ -7,3 +7,4 @@ gem "pg"
 gem "rerun"
 gem "rackup"
 gem "puma"
+gem 'rmagick'
