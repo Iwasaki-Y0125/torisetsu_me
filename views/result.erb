@@ -33,8 +33,7 @@
 <p>あなたの共有URL</p>
 <input type="text" value="<%= session[:share_url] %>" id="shareUrl" readonly>
 <button id="copy_url">URLをコピー</button>
-<% encoded_text = ERB::Util.url_encode("自分のトリセツを作りました！\nわたしを伝える新しいコミュニケーションツール💌") %>
-<% encoded_url = ERB::Util.url_encode(session[:share_url]) %>
+
 <br><br>
 <a id="postToX" class="x-post-button"
 href="https://twitter.com/intent/tweet?text=<%= URI.encode_www_form_component("自分のトリセツを作ってみました👇\n#わたしのトリセツ") %>&url=<%= h session[:share_url] %>"
