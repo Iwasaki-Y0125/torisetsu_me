@@ -178,7 +178,7 @@ else
 end
 
 category_me = raw["category_me"]
-category_me_custom = raw["category_custom_me"]
+category_me_custom = raw["category_me_custom"]
 
 category_me_custom_str = category_me_custom.to_s.strip
 final_category_me =

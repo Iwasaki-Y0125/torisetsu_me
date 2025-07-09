@@ -19,9 +19,11 @@
 <div class="Questions_and_Answers">
 <ul>
 <% @profile["final_questions"].each_with_index do |q, i| %>
+    <% if q && !q.strip.empty? && @profile["answers"][i] && !@profile["answers"][i].strip.empty? %>
     <li><%= h q %>
     <span class="answer-text"><%= h @profile["answers"][i] %></span>
     </li>
+    <% end %>
 <% end %>
 </ul>
 </div>
