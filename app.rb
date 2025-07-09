@@ -6,7 +6,7 @@ require 'json'
 require 'rmagick'
 # include Magick
 
-enable :sessions
+
 
 #アプリ起動時に一度だけ実行される初期設定の場所 configure do ... end
 configure do
@@ -22,9 +22,13 @@ configure do
         host: 'db',
         port: 5432
         )
-        end
+    end
 
 set :conn, conn
+
+enable :sessions
+set :session_secret, ENV['SESSION_SECRET'] || 'GdD7Uk5Xak+CVnFOSQq/9oSunuRt4l7zof+BA7Dtg6WwluuppE2rZReVZ4plKzVJ'
+
 set :bind, '0.0.0.0'
 set :port, ENV['PORT'] || 4567
 end

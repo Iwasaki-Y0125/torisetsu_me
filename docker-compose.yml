@@ -3,6 +3,7 @@ version: "3.8"
 services:
   app:
     build: .
+    command: ruby app.rb -o 0.0.0.0
     ports:
       - "4567:4567"
     volumes:
@@ -11,6 +12,7 @@ services:
       - db
     environment:
       - DATABASE_URL=postgres://postgres:password@db:5432/torisetsu_db
+      - SESSION_SECRET=GdD7Uk5Xak+CVnFOSQq/9oSunuRt4l7zof+BA7Dtg6WwluuppE2rZReVZ4plKzVJ
 
   db:
     image: postgres:15
