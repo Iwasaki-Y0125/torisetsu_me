@@ -27,8 +27,7 @@ configure do
 set :conn, conn
 
 enable :sessions
-set :session_secret, ENV['SESSION_SECRET'] || 'GdD7Uk5Xak+CVnFOSQq/9oSunuRt4l7zof+BA7Dtg6WwluuppE2rZReVZ4plKzVJ'
-
+set :session_secret, ENV['SESSION_SECRET']
 set :bind, '0.0.0.0'
 set :port, ENV['PORT'] || 4567
 end
