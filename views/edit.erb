@@ -5,7 +5,7 @@
     <p id="edit_description"><br>どんなトリセツをつくる？
     <br><br>例：「働くとき」の「わたし」<br> 　「友だちと」の「ぼく」</p>
 
-    <label for="category_select">カテゴリ選択</label>
+    <label for="category_select">カテゴリ選択　※必須</label><br>
     <select id="category" name="category">
         <option value="" <%= @category == "" ? "selected" : "" %>>-- 選択してください --</option>
         <option value="働くとき" <%= @category == "働くとき" ? "selected" : "" %>>働くとき</option>
@@ -19,7 +19,7 @@
 
 
 <br><br>
-    <label for="category_me_select">一人称を選択</label>
+    <label for="category_me_select">一人称を選択　※必須</label><br>
     <select id="category_me" name="category_me">
         <option value="" <%= @category_me == "" ? "selected" : "" %>>-- 選択してください --</option>
         <option value="わたし" <%= @category_me == "わたし" ? "selected" : "" %>>わたし</option>
@@ -35,15 +35,15 @@
 
 <br><br>
     <fieldset id="name_fieldset">
-        <label for="name">名　　前　</label>
+        <label for="name">名　　前　※必須</label>
         <input type="text" name="name" id="name" placeholder="田中 太郎　or　たーちゃん" value="<%= h @name %>" />
 <br>
-    <label for="name_furigana">ふりがな　</label>
+    <label for="name_furigana">ふりがな　※任意</label>
     <input type="text" name="name_furigana" id="name_furigana" placeholder="たなか たろう　or　たーちゃん" value="<%= h @name_furigana %>" />
 
 <br><br>
 
-    <p>どのわたしを選ぶ？</p>
+    <p>どのわたしを選ぶ？ ※必須</p>
     <div id="avatar-list">
         <% 6.times do |i| %>
         <% avatar_name = "avatar#{i}.png" %>
@@ -55,13 +55,19 @@
     </div>
     </fieldset>
 <br><br>
+<div class="block">
+    <p>トリセツの内容を入力しよう</p>
+    <p>トリセツは最大5つまで</p>
+    <p>※トリセツ１のみ必須</p>
+</div>
     <% 5.times do |i| %>
     <%= erb :"partials/_question_block", locals: { index: i + 1 } %>
     <% end %>
 
-
-    <label for="message">みんなにひとこと</label><br>
+<div class="block">
+    <label for="message">みんなにひとこと　※必須</label><br>
     <textarea id="message" name="message" placeholder="よろしくおねがいします！"><%= h @message %></textarea>
+</div>
 <br><br>
 
     <button type="submit" id="edit_button">トリセツを<br>つくる</button>
