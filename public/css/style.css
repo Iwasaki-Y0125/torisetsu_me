@@ -251,8 +251,9 @@ input{
 
 #category_custom, #category_me_custom {
     max-width: 365px;
-    margin: 0.5rem 0 0 8.5rem;
+    margin: 0.5rem;
     padding: 1.5rem 1rem;
+
 }
 
 input.avatar {
@@ -295,9 +296,7 @@ textarea{
     margin: -2rem 0 0 7rem;
 }
 
-#torisetsu_attention{
-    margin: -1rem 0 0 7rem;
-}
+
 
 .answer{
     max-width: 300px;
@@ -308,10 +307,10 @@ textarea{
 #message{
     max-width: 300px;
     height: 80px;
-    margin: 0rem 0 5rem 0;
+    margin: 0rem 0rem 0;
 }
 
-fieldset{
+fieldset, .block{
     background-color: var(--nb);
     border: 2px solid #999;
     border-radius: 30px;
@@ -559,8 +558,8 @@ textarea {
 }
 
 #category_custom, #category_me_custom, .answer {
-    display: block;
-    width: 80%;
+    /* display: block; */
+    /* width: 80%; */
     margin: 1rem auto !important; /* 中央寄せ ＋ 上下マージン */
     float: none !important;  /* 万が一 float されてた場合の解除 */
 }
@@ -568,13 +567,13 @@ textarea {
 .question-select{
     width: 90%;
     max-width: 100%;
-        font-size: 0.8rem;
-        height: auto;
+    font-size: 0.8rem;
+    height: auto;
 }
 
 .question-custom{
-        width: 75%;
-        max-width: 100%;
+    width: 75%;
+    max-width: 100%;
 }
 
 .avatar_image, .avatar-image-piked {
@@ -583,11 +582,7 @@ textarea {
 }
 
 .question-custom {
-    margin: 1rem auto;
-}
-
-#torisetsu_attention {
-    margin: 1rem auto;
+    margin: 0 auto;
 }
 
 fieldset {

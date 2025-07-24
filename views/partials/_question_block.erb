@@ -63,12 +63,12 @@
     <div>
         <textarea class="question-custom" id="question_custom_<%= index %>" name="question_customs[]"  placeholder="操作説明：やる気スイッチはどこ？" ><%= h @question_customs[index - 1] || "" %></textarea>
 
-    <p id="torisetsu_attention">質問に好きな文言を入力するときは<br class="br-sp">「その他（自由入力）」を選んでね</p>
+    <p id="torisetsu_attention">質問に好きな文言を入力するときは<br>「その他（自由入力）」を選んでね</p>
     </div>
     <br>
     <div>
     <label for="answer_<%= index %>">回答</label> <br>
     <textarea class="answer" id="answer_<%= index %>" name="answers[]" placeholder="こたえを書いてね"><%= h @answers[index - 1] || "" %></textarea>
     </div>
-    <br><br>
+    <br>
 </fieldset>
