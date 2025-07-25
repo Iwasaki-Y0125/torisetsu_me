@@ -305,9 +305,9 @@ textarea{
 }
 
 #message{
-    max-width: 300px;
-    height: 80px;
-    margin: 0rem 0rem 0;
+    max-width: 230px;
+    height: 70px;
+    margin: 1rem;
 }
 
 fieldset, .block{
@@ -315,6 +315,7 @@ fieldset, .block{
     border: 2px solid #999;
     border-radius: 30px;
     margin: 2rem 0;
+    padding: 2rem;
 }
 
 #category_fieldset {
@@ -341,8 +342,8 @@ fieldset, .block{
     max-width: 1200px;
     width: 100%; /* 横幅は可能な限り広げる（画面幅に応じて） */
     height: auto;
-    margin: 2rem auto; /* 中央寄せ */
-    padding: 2rem; /* スマホでも余白ができるように*/
+    margin: 1rem auto; /* 中央寄せ */
+    padding: 0 3rem; /* スマホでも余白ができるように*/
     background-color: var(--nb); /*背景色 */
     /* border: 10px double rgb(167, 167, 167); */
     border-radius: 10px; /* 枠線の丸み*/
@@ -353,10 +354,9 @@ article h1{
     background-color:#fff ; /*背景色 */
     color: var(--mf);
     border-radius: 10px; /* 枠線の丸み*/
-    padding: 1.5rem;
+    padding: 1.5rem 0;
     border-bottom: 1px solid #c0c0c0;
     border-left: 50px solid #646464;
-    margin-top:5rem ;
 }
 
 .Name_and_message{
@@ -369,8 +369,12 @@ article h1{
 
 .Name_and_message h1 {
     font-size: 1.8rem;
-    margin-bottom: 5rem;
     line-height: 2;
+}
+
+.result_name_label{
+    font-size: 1rem;
+    margin: 0rem;
 }
 
 .name_box {
@@ -382,23 +386,15 @@ article h1{
 
 .Name_and_message h2 {
     font-size: 2.5rem;
-    margin-bottom: 0;
+    margin:0 ;
 }
 
 .result_furigana {
     font-size: 1.1rem;
     line-height: 0;
     margin-top: 0.5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
 }
-.result_name_labe{
-    position: relative;
-    padding: 20px 24px;
-    font-size: 1rem;
-    background:#ffffff;
-    border: 2px solid var(--lb);
-}
-
 
 .result_message {
     position: relative;
@@ -445,8 +441,8 @@ ul{
 }
 
 .Questions_and_Answers ul {
-    padding: 0;
-    margin: 5rem;
+    padding: 0 1rem;
+    margin:  1.5rem 2rem;
 }
 
 .Questions_and_Answers li {
@@ -457,7 +453,7 @@ ul{
     padding: 30px 20px;
     margin-bottom: 20px;
     border-radius: 8px;
-    line-height: 4;
+    line-height: 2.5;
 }
 
 .answer-text {
@@ -595,6 +591,8 @@ fieldset {
     width: 100%;
     max-width: 280px;
     flex-direction: column;
+    margin: 0rem auto;
+    padding: 1rem;
 }
 
 .Name_and_message h1 {
@@ -634,6 +632,7 @@ article h1 {
 
 .Questions_and_Answers ul {
     margin: 1rem 0;
+    padding: 0;
 }
 
 .Questions_and_Answers li {
