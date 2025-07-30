@@ -10,26 +10,46 @@ require 'rmagick'
 
 #アプリ起動時に一度だけ実行される初期設定の場所 configure do ... end
 configure do
-    db_url = ENV['DATABASE_URL']
+  # 環境判定
+  is_production = ENV['DATABASE_URL'] && !ENV['DATABASE_URL'].empty?
+  ssl_mode = ENV['DATABASE_SSL_MODE'] || (is_production ? 'require' : 'disable')
 
-    conn = if db_url && !db_url.empty?   #デプロイ時
-        PG.connect(db_url)
-    else  #ローカル時
-        PG.connect(
-        dbname: 'torisetsu_db',
-        user: 'postgres',
-        password: 'password',
-        host: 'db',
-        port: 5432
-        )
-    end
+  # データベース接続
+  conn = begin
+    if is_production
+    puts "Production mode: Connecting with SSL"
+    PG.connect(ENV['DATABASE_URL'], sslmode: ssl_mode)
+    else
+    puts "Development mode: Connecting locally"
+    PG.connect(
+      dbname: 'torisetsu_db',
+      user: 'postgres',
+      password: 'password',
+      host: 'db',
+      port: 5432,
+      sslmode: 'disable'
+    )
+  end
+  rescue PG::Error => e
+    puts "Database connection failed: #{e.message}"
+    raise e
+  end
 
-set :conn, conn
+  puts "Database connected successfully with SSL mode: #{ssl_mode}"
+  set :conn, conn
 
-enable :sessions
-set :session_secret, ENV['SESSION_SECRET']
-set :bind, '0.0.0.0'
-set :port, ENV['PORT'] || 4567
+  # セッション設定
+  session_secret = ENV['SESSION_SECRET'] ||
+                    (is_production ? nil : 'dev_secret_change_in_production')
+
+  if session_secret.nil?
+    raise "SESSION_SECRET is required in production"
+  end
+
+  enable :sessions
+  set :session_secret, session_secret
+  set :bind, '0.0.0.0'
+  set :port, ENV['PORT'] || 4567
 end
 
 # XSS（クロスサイトスクリプティング）対策のコード  <%= h @message %>
