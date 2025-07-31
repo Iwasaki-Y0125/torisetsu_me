@@ -4,7 +4,6 @@ require 'pg'
 require 'securerandom'
 require 'json'
 require 'rmagick'
-# include Magick
 
 
 
