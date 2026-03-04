@@ -1,20 +1,22 @@
-# サービス名
-**わたしのトリセツ.me**
-
----
+## サービス名  : **わたしのトリセツ.me**
 
 ## サービス概要
 オンラインでも共有できる自己紹介コミュニケーションツール。
 はじめての人とも距離をぐっと縮めるきっかけに。
 
----
+![screenshot01](public/screenshot/torisetsu_me_screenshot01.png)
+![screenshot02](public/screenshot/torisetsu_me_screenshot02.png)
+![screenshot03](public/screenshot/torisetsu_me_screenshot03.png)
+![screenshot04](public/screenshot/torisetsu_me_screenshot04.png)
+![screenshot05](public/screenshot/torisetsu_me_screenshot05.png)
+
+
 
 ## 開発背景
 - 自分自身が自己紹介に苦手意識があり、不安を減らせる手段が欲しかった。
 - 現代ではオンライン会議やリモートチームが一般的になり、短時間で自分を印象づける重要性が増している。
 - その中で「効率的に自己開示できるツール」には一定のニーズがあると考えた。
 
----
 
 ## ターゲット層
 - 20〜30代の新社会人

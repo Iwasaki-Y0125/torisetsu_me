@@ -6,7 +6,6 @@ require 'json'
 require 'rmagick'
 
 
-
 #アプリ起動時に一度だけ実行される初期設定の場所 configure do ... end
 configure do
   # 環境判定
